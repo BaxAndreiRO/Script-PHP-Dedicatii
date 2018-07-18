@@ -28,13 +28,15 @@
 <br>
 <br>
 
-<?php
-if(isset($_POST['pentru']) && isset($_POST['dela']) && isset($_POST['mesaj'])) {
-  require_once('php/adauga_dedicatia.php');
-} else {
-  if(status_dedicatii) { require_once('sabloane/dedicatii/dedicatii_pornite.php'); } else { require_once('sabloane/dedicatii/dedicatii_oprite.php'); }
-}
-?>
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">Se pare ca aceasta adresa IP nu are permisiunea de a naviga pe acest radio.</h3>
+  </div>
+  <div class="panel-body">
+    <?php echo $mesaj_ban; ?>
+	</div>
+</div>
+
 			</div>
 		</div>
 </div>
@@ -49,70 +51,5 @@ if(isset($_POST['pentru']) && isset($_POST['dela']) && isset($_POST['mesaj'])) {
 <?php if(ascunde_acp == 1) { ?><script>if (top != self) { document.write("<style>div#link-admin { display:none!important;}</style>"); }</script><?php } ?>
 <?php if(fara_logo_iframe == 1) { ?><script>if (top != self) { document.getElementById('transparent_logo').style.cssText = 'display:none!important;';}</script><?php } ?>
 
-<?php if(activare_ajax == 1 && !isset($_POST['pentru']) && !isset($_POST['dela']) && !isset($_POST['mesaj'])) { ?>
-<?php if(status_dedicatii == 1) { ?>
-<div class="modal fade" id="alerta-dedicatii-modal" tabindex="-1" role="dialog" aria-labelledby="alerta-dedicatii-modal">
-<div style="display: table;position: absolute;height: 100%;width: 100%;">
-  <div style="display: table-cell;vertical-align: middle;">
-    <div style="margin-left: auto;margin-right: auto; width:100%;padding: 100px 0px 100px 0px;background: #eeeeee; z-index:1000;">
-      <h4><center>Hey! Imi pare rau, dar se pare ca nu mai este nici un DJ in emisie! Te rugam sa te reintorci mai tarziu.</center></h4>
-	  <br><br>
-	  <center>
-	  <button type="button" class="btn btn-primary" onclick="location.reload();"> <i class="fa fa-refresh fa-spin" aria-hidden="true"></i> Reincarca pagina</button>
-	  </center>
-    </div>
-  </div>
-</div>
-</div>
-<script>
-<?php echo criptare_js('if ($.fn.modal) {
-window.setInterval(function(){
-$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/resurse-dinamice/'.id_radio.'-status_dedicatii/\', function(status_dedicatii) {
-var status_dedicatii1 = status_dedicatii.replace("(", "");
-var status_dedicatii2 = status_dedicatii1.replace(")", "");
-var status_dedicatii3 = status_dedicatii2.replace(" ", "");
-var status_acum = 1;
-if(status_acum != status_dedicatii) {
-$(\'#alerta-dedicatii-modal\').modal(\'show\');
-} else {
-$(\'#alerta-dedicatii-modal\').modal(\'hide\');
-}
-});
-}, '.timp_refresh_ajax * 1000 .');
-}'); ?>
-</script>
-<?php } else { ?>
-<div class="modal fade" id="alerta-dedicatii-modal" tabindex="-1" role="dialog" aria-labelledby="alerta-dedicatii-modal">
-<div style="display: table;position: absolute;height: 100%;width: 100%;">
-  <div style="display: table-cell;vertical-align: middle;">
-    <div style="margin-left: auto;margin-right: auto; width:100%;padding: 100px 0px 100px 0px;background: #eeeeee; z-index:1000;">
-      <h4><center>Hey! Se pare ca un DJ a intrat in emisie si asteapta dedicatiile tale!</center></h4>
-	  <br><br>
-	  <center>
-	  <button type="button" class="btn btn-primary" onclick="location.reload();"> <i class="fa fa-refresh fa-spin" aria-hidden="true"></i> Reincarca pagina</button>
-	  </center>
-    </div>
-  </div>
-</div>
-</div>
-<script>
-<?php echo criptare_js('if ($.fn.modal) {
-window.setInterval(function(){
-$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/resurse-dinamice/'.id_radio.'-status_dedicatii/\', function(status_dedicatii) {
-var status_dedicatii1 = status_dedicatii.replace("(", "");
-var status_dedicatii2 = status_dedicatii1.replace(")", "");
-var status_dedicatii3 = status_dedicatii2.replace(" ", "");
-var status_acum = 0;
-if(status_acum != status_dedicatii) {
-$(\'#alerta-dedicatii-modal\').modal(\'show\');
-} else {
-$(\'#alerta-dedicatii-modal\').modal(\'hide\');
-}
-});
-}, '.timp_refresh_ajax * 1000 .');
-}'); ?>
-</script>
-<?php } ?>
-<?php } ?>
 </body>
 </html>
