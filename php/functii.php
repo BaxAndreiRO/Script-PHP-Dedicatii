@@ -15,6 +15,8 @@
 // Spre exemplu: daca stergeti functia care verifica statusul remote web sau suspendare, scriptul trimite cereri catre platforma, dar va primi date eronate si scriptul va deveni inutil.
 
 /////////////////////////////////////////////////
+// Prevenire SQL injection prin _POST sau _GET.
+/////////////////////////////////////////////////
 foreach ($_POST as $cheie => $valoare) {
   $valoare = str_replace('"', "&#x22;", $valoare);
   $valoare = str_replace("'", "&#x27;", $valoare);
@@ -28,20 +30,26 @@ foreach ($_GET as $cheie => $valoare) {
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// Sistem afisare pagini.
+/////////////////////////////////////////////////
 if(!empty($_GET['acp'])) {
   if(!empty($_GET['pagina'])) {
-    if(file_exists("sabloane/acp/".$_GET['pagina'])) {
-      $pagina = "sabloane/acp/".$_GET['pagina'];
+    if($_GET['pagina'] == 'acasa') {
+      $pagina = "sabloane/panou_administrare/index.php";
     } else {
-      $pagina = "sabloane/acp/index.php";
+      if(file_exists("sabloane/panou_administrare/".$_GET['pagina'].".php")) {
+        $pagina = "sabloane/panou_administrare/".$_GET['pagina'].".php";
+      } else {
+        $pagina = "sabloane/erori_panou_administrare/pagina_inexistenta.php";
+      }
     }
   } else {
-    $pagina = "sabloane/acp/index.php";
+    $pagina = "sabloane/panou_administrare/index.php";
   }
 } else {
   if(!empty($_GET['pagina'])) {
-    if(file_exists("sabloane/dedicatii/".$_GET['pagina'])) {
-      $pagina = "sabloane/dedicatii/".$_GET['pagina'];
+    if(file_exists("sabloane/dedicatii/".$_GET['pagina'].".php")) {
+      $pagina = "sabloane/dedicatii/".$_GET['pagina'].".php";
     } else {
       $pagina = "sabloane/dedicatii/index.php";
     }
@@ -52,11 +60,59 @@ if(!empty($_GET['acp'])) {
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// Seteaza nivelul minim de acces pentru fiecare pagina.
+/////////////////////////////////////////////////
+if(!empty($_GET['pagina']) && !empty($_GET['acp'])) {
+  if($_GET['pagina'] == "dedicatii") { define('acces_minim_necesar','1'); }
+  if($_GET['pagina'] == "banip") { define('acces_minim_necesar','1'); }
+  if($_GET['pagina'] == "istoric-conectari") { define('acces_minim_necesar','2'); }
+  if($_GET['pagina'] == "mesaje-personalizate") { define('acces_minim_necesar','2'); }
+  if($_GET['pagina'] == "coduri-si-unelte") { define('acces_minim_necesar','2'); }
+  if($_GET['pagina'] == "setari-sistem") { define('acces_minim_necesar','3'); }
+  if($_GET['pagina'] == "setari-aspect") { define('acces_minim_necesar','3'); }
+  if($_GET['pagina'] == "css-personalizat") { define('acces_minim_necesar','3'); }
+  if($_GET['pagina'] == "conturi-utilizatori") { define('acces_minim_necesar','3'); }
+  if($_GET['pagina'] == "magazin") { define('acces_minim_necesar','3'); }
+  if($_GET['pagina'] == "situatie-financiara") { define('acces_minim_necesar','3'); }
+}
+if(!defined('acces_minim_necesar')) { define('acces_minim_necesar','0'); }
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Seteaza titlul in functie de pagina solicitata.
+/////////////////////////////////////////////////
+if(!empty($_GET['pagina']) && !empty($_GET['acp'])) {
+  if($_GET['pagina'] == "acasa") { $titlu_pagina = "Bun venit in Panoul de administrare."; }
+  if($_GET['pagina'] == "conectare") { $titlu_pagina = "Va rugam sa va autentificati."; }
+  if($_GET['pagina'] == "parola-pierduta") { $titlu_pagina = "Mi-am uitat parola."; }
+  if($_GET['pagina'] == "dedicatii") { $titlu_pagina = "Lista Dedicatii"; }
+  if($_GET['pagina'] == "banip") { $titlu_pagina = "BanIP"; }
+  if($_GET['pagina'] == "istoric-conectari") { $titlu_pagina = "Istoric Conectari"; }
+  if($_GET['pagina'] == "setari-sistem") { $titlu_pagina = "Setari Sistem"; }
+  if($_GET['pagina'] == "setari-aspect") { $titlu_pagina = "Setari Aspect"; }
+  if($_GET['pagina'] == "css-personalizat") { $titlu_pagina = "CSS Personalizat"; }
+  if($_GET['pagina'] == "mesaje-personalizate") { $titlu_pagina = "Mesaje Personalizate"; }
+  if($_GET['pagina'] == "conturi-utilizatori") { $titlu_pagina = "Conturi Utilizator"; }
+  if($_GET['pagina'] == "coduri-si-unelte") { $titlu_pagina = "Coduri si Scripturi"; }
+  if($_GET['pagina'] == "magazin") { $titlu_pagina = "Magazin"; }
+  if($_GET['pagina'] == "noutati") { $titlu_pagina = "Noutati si actualizari"; }
+  if($_GET['pagina'] == "intrebari-frecvente") { $titlu_pagina = "Intrebari frecvente"; }
+  if($_GET['pagina'] == "situatie-financiara") { $titlu_pagina = "Situatie financiara"; }
+  if($_GET['pagina'] == "istoric-versiuni-platforma") { $titlu_pagina = "Istoric versiuni platforma"; }
+}
+if(!isset($titlu_pagina)) { $titlu_pagina = "Pagina specificata nu exista!"; }
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Afiseaza alerta in caz ca nu este configurat bine id-ul radioului in setari.
+/////////////////////////////////////////////////
 if(empty(id_radio)) {
   exit(require_once('sabloane/erori/id_nespecificat.php'));
 }
 /////////////////////////////////////////////////
 
+/////////////////////////////////////////////////
+// Functie pentru a sterge toate fisierele mai vechi de X secunde dintr-un folder.
 /////////////////////////////////////////////////
 function stergere_continut_folder_mai_vechi_de($folder = null, $minute = null) {
   $secunde = $minute*60;
@@ -77,9 +133,12 @@ function stergere_continut_folder_mai_vechi_de($folder = null, $minute = null) {
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// Functie pentru obtinere date din Platforma de Dedicatii.
+/////////////////////////////////////////////////
 function obtine_date_remote($radio='nespecificat',$cerere='nespecificat',$utilizator='nespecificat',$parola='nespecificat') {
   stergere_continut_folder_mai_vechi_de('cache', timp_sergere_cache);
-  $cache_ignora = array('exista_radio','remote_web','status_dedicatii','status_preferinte', 'status_suspendare','mentenanta');
+  $cache_ignora = array('exista_radio','remote_web','status_dedicatii','status_preferinte', 'status_suspendare','mentenanta',
+  'verifica_autentificare','obtine_nivel_acces');
   if(in_array($cerere, $cache_ignora)) {
     if(!empty($radio) && !empty($cerere)) {
       return file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web/$radio-$cerere/$utilizator-$parola/");
@@ -104,12 +163,16 @@ function obtine_date_remote($radio='nespecificat',$cerere='nespecificat',$utiliz
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// Functia care verifica daca radioul specificat exista.
+/////////////////////////////////////////////////
 if(obtine_date_remote(id_radio, 'exista_radio') != 1) {
   echo obtine_date_remote(id_radio, 'exista_radio');
   exit(require_once('sabloane/erori/radio_inexistent.php'));
 }
 /////////////////////////////////////////////////
 
+/////////////////////////////////////////////////
+// Functia care verifica daca radioul este sau nu suspendat.
 /////////////////////////////////////////////////
 if(obtine_date_remote(id_radio, 'remote_web') != 1) {
   echo obtine_date_remote(id_radio, 'exista_radio');
@@ -118,17 +181,23 @@ if(obtine_date_remote(id_radio, 'remote_web') != 1) {
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// Functia care verifica daca radioul este suspendat sau nu.
+/////////////////////////////////////////////////
 if(obtine_date_remote(id_radio, 'status_suspendare') != "radio_activ") {
   exit(obtine_date_remote(id_radio, 'status_suspendare'));
 }
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// Functia care afiseaza (daca este activat in setari) o pagina speciala cand Platforma de Dedicatii este in mentenanta.
+/////////////////////////////////////////////////
 if(obtine_date_remote(id_radio, 'mentenanta') == "in_lucru=1" &&  alerta_mentenanta == 1) {
   exit(require_once('sabloane/altele/mentenanta_activa.php'));
 }
 /////////////////////////////////////////////////
 
+/////////////////////////////////////////////////
+// Functia pentru criptarea javascript.
 /////////////////////////////////////////////////
 function criptare_js($cod_js=null) {
   require_once('criptator_js.php');
@@ -137,6 +206,8 @@ function criptare_js($cod_js=null) {
 }
 /////////////////////////////////////////////////
 
+/////////////////////////////////////////////////
+// Definire variabile site.
 /////////////////////////////////////////////////
 define('versiune_fisiere_no_cache',obtine_date_remote(id_radio, 'versiune_fisiere_no_cache'));
 define('nume_radio',obtine_date_remote(id_radio, 'nume_radio'));
@@ -159,14 +230,17 @@ define('mesaj_acest_ip_a_atins_limita_de_dedicatii',obtine_date_remote(id_radio,
 define('limita_de_dedicatii_per_ip',obtine_date_remote(id_radio, 'limita_de_dedicatii_per_ip'));
 define('mesaj_eroare_necunoscuta',obtine_date_remote(id_radio, 'mesaj_eroare_necunoscuta'));
 define('mesaj_dedicatie_trimisa',obtine_date_remote(id_radio, 'mesaj_dedicatie_trimisa'));
-
+define('tip_banner_acp',obtine_date_remote(id_radio, 'tip_banner_acp'));
+define('adresa_radio',obtine_date_remote(id_radio, 'adresa_radio'));
 /////////////////////////////////////////////////
 
+/////////////////////////////////////////////////
+// Functia care verifica daca vizitatorul este banat.
 /////////////////////////////////////////////////
 function banat($ip = null) {
   if(!empty($ip)) {
     $status_ban = file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_ban/".id_radio."-$ip/");
-    if($status_ban != "utilizator_nebanat") {
+    if($status_ban != "utilizator_nebanat" && empty($_GET['acp'])) {
       $mesaj_ban = $status_ban;
       exit(require_once('sabloane/altele/ip_banat.php'));
     }
@@ -176,11 +250,54 @@ banat($_SERVER['REMOTE_ADDR']);
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// Functia ce obtine adresa curenta.
+/////////////////////////////////////////////////
 function adresa_curenta() {
 	if($_SERVER['SERVER_PORT'] == 443) {
 	return "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	} else {
 	return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	}
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia ce verifica daca utilizatorul este conectat sau nu.
+/////////////////////////////////////////////////
+function conectat() {
+  if(!empty($_COOKIE['utilizator'])) { $utilizator = $_COOKIE['utilizator']; } else { $utilizator = 'nespecificat'; }
+  if(!empty($_COOKIE['parola'])) { $parola = $_COOKIE['parola']; } else { $parola = 'nespecificat'; }
+  if(obtine_date_remote(id_radio, 'verifica_autentificare', $utilizator, $parola) == 1) {
+    return true;
+  } else {
+    return false;
+  }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care obtine gradul utilizatorului.
+/////////////////////////////////////////////////
+function obtine_nivel_acces() {
+  if(conectat()) {
+    if(!empty($_COOKIE['utilizator'])) { $utilizator = $_COOKIE['utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['parola'])) { $parola = $_COOKIE['parola']; } else { $parola = 'nespecificat'; }
+    return obtine_date_remote(id_radio, 'obtine_nivel_acces', $utilizator, $parola);
+  } else {
+    return '0';
+  }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care te redirectioneaza catre index daca esti conectat sau catre conectare daca nu esti conectat.
+/////////////////////////////////////////////////
+if(!empty($_GET['acp'])) {
+  $pagini_fara_conectare = array('conectare');
+  if(!in_array($_GET['pagina'], $pagini_fara_conectare) && !conectat()) {
+    header('Location: conectare');
+  } elseif(in_array($_GET['pagina'], $pagini_fara_conectare) && conectat()) {
+    header('Location: acasa');
+  }
 }
 /////////////////////////////////////////////////

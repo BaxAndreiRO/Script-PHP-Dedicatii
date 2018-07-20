@@ -1,0 +1,15 @@
+RewriteEngine On
+IndexIgnore .htaccess
+Options -Indexes
+
+RewriteRule ^admin$ index.php?acp=1&pagina=acasa
+RewriteRule ^admin/$ index.php?acp=1&pagina=acasa
+
+RewriteRule ^admin/([^/]+)/$ index.php?acp=1&pagina=$1
+RewriteRule ^admin/([^/]+)$ index.php?acp=1&pagina=$1
+
+RewriteRule ^admin/([^/]+)/pagina-([^/]+)/$ index.php?acp=1&pagina=$1&nr-pagina=$2
+RewriteRule ^admin/([^/]+)/pagina-([^/]+)$ index.php?acp=1&pagina=$1&nr-pagina=$2
+
+RewriteRule ^admin/banip/([^/]+)/$ index.php?acp=1&pagina=banip&ip_ban=$1
+RewriteRule ^admin/banip/([^/]+)$ index.php?acp=1&pagina=banip&ip_ban=$1
