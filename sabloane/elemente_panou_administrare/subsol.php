@@ -1,5 +1,5 @@
 
-<center><kbd><a style="text-decoration:none;" href="https://github.com/BaxAndreiRO/Script-PHP-Dedicatii" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> Script de Dedicatii</a> - Versiunea 1.0.0 - By <a href="https://baxandrei.ro" style="text-decoration:none;" target="_blank">BaxAndrei.Ro</a></kbd></center><br>
+<center><kbd><a style="text-decoration:none;" href="https://github.com/BaxAndreiRO/Script-PHP-Dedicatii" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> Script de Dedicatii</a> <?php if(!empty(versiune_script())) { echo "- Versiunea ". versiune_script(); } ?> - By <a href="https://baxandrei.ro" style="text-decoration:none;" target="_blank">BaxAndrei.Ro</a></kbd></center><br>
 <br>
 
 	</div>
@@ -55,7 +55,7 @@
       <div class="modal-footer">
       <div class="col-lg-12" style="text-align: left;">
 	        <label style="text-align:left;">Introdu adresa avatarului:</label>
-        <input type="url" required class="form-control avatar-activ" autocomplete="off" placeholder="Introduceti adresa catre imaginea dorita pentru avatar" name="avatar" id="avatar" value="?php echo obtinere_avatar_utiliator($_GET['radio'],$_COOKIE['dedicatiiv2_utilizator']); ?>">
+        <input type="url" required class="form-control avatar-activ" autocomplete="off" placeholder="Introduceti adresa catre imaginea dorita pentru avatar" name="avatar" id="avatar" value="<?php echo obtine_avatar_utilizator(); ?>">
       </div>
       </div>
       <div class="modal-footer">
@@ -99,21 +99,22 @@ $(document).ready(function(){
             $.ajax({
                 type: "POST",
                 data: {
-                    parola_veche: md5($("#parola_veche").val()),
-                    parola_noua_1: md5($("#parola_noua_1").val()),
-                    parola_noua_2: md5($("#parola_noua_2").val())
+                    parolanoua: md5($("#parola_noua_1").val()),
+                    parolanouaconfirmare: md5($("#parola_noua_2").val()),
+										nume: "'.$_COOKIE["utilizator"].'",
+										parola: md5($("#parola_veche").val())
                 },
-                url: "-schimbare_parola/",
+                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_actualizare_parola/'.id_radio.'",
                 dataType: "json",
                 success: function (result) {
 					if (result.raspuns == "parola_schimbata") {
 						window.setTimeout(function(){
 						$("#trimite_schimbare_parola").removeClass(\'btn-info\');
 						$("#trimite_schimbare_parola").addClass(\'btn-success\');
-						toastr[\'success\']("Datele introduse au fost corecte, iar parola a fost schimbata! Va vom deconecta din motive de scrucitate...");
+						toastr[\'success\']("Datele introduse au fost corecte, iar parola a fost schimbata! Va vom deconecta din motive de securitate...");
                         $("#trimite_schimbare_parola").html(\'<i class="fa fa-refresh fa-spin" aria-hidden="true"></i> In curs de deconectare...\');
 						window.setTimeout(function(){
-                        window.location = "/admin/acasa/";
+                        window.location = "acasa";
 						}, 3010);
 						}, 1000);
 
@@ -172,7 +173,7 @@ $(document).ready(function(){
                 data: {
                     trimite_cerere_deconectare: $("#trimite_cerere_deconectare").val()
                 },
-                url: "-deconectare/",
+                url: "&deconectare",
                 dataType: "text",
                 success: function (result) {
 					if (result == "utilizator_deconectat") {
@@ -180,16 +181,15 @@ $(document).ready(function(){
 						$("#trimite_cerere_deconectare").removeClass(\'btn-info\');
 						$("#trimite_cerere_deconectare").addClass(\'btn-success\');
 						toastr[\'success\']("Deconectarea a fost efecutata! In curs de deleogare...");
-                        $("#trimite_cerere_deconectare").html(\'<i class="fa fa-refresh fa-spin" aria-hidden="true"></i> In curs de delogare...\');
+						$("#trimite_cerere_deconectare").html(\'<i class="fa fa-refresh fa-spin" aria-hidden="true"></i> In curs de delogare...\');
 						window.setTimeout(function(){
-                        window.location = "/admin/acasa/";
+						window.location = "acasa";
 						}, 3010);
 						}, 1000);
-
-                    } else {
+						} else {
 						window.setTimeout(function(){
-                        $("#trimite_cerere_deconectare").html(\'<i class="fa fa-exclamation-circle" aria-hidden="true"></i> Eroare temporara...\');
-                        toastr[\'warning\'](\'Se pare ca a aparut o eroare neasteptata. Va rugam sa reincercati!\');
+						$("#trimite_cerere_deconectare").html(\'<i class="fa fa-exclamation-circle" aria-hidden="true"></i> Eroare temporara...\');
+						toastr[\'warning\'](\'Se pare ca a aparut o eroare neasteptata. Va rugam sa reincercati!\');
 					$("#trimite_cerere_deconectare").removeClass(\'btn-info\');
 					$("#trimite_cerere_deconectare").addClass(\'btn-warning\');
 							window.setTimeout(function(){
@@ -200,24 +200,24 @@ $(document).ready(function(){
 							$("#deconectare_anulare").removeClass(\'disabled\');
 							}, 3000);
 						}, 1000);
-                    }
+						}
 				},
                 beforeSend: function () {
 					$("#deconectare_anulare").addClass(\'disabled\');
-                    $("#trimite_cerere_deconectare").html(\' <i class="fa fa-cog fa-spin"></i> Deconectare in curs...\');
-                    $("#trimite_cerere_deconectare").addClass(\'disabled\');
+						$("#trimite_cerere_deconectare").html(\' <i class="fa fa-cog fa-spin"></i> Deconectare in curs...\');
+						$("#trimite_cerere_deconectare").addClass(\'disabled\');
 					$("#trimite_cerere_deconectare").removeClass(\'btn-success\');
 					$("#trimite_cerere_deconectare").addClass(\'btn-info\');
 					toastr[\'info\']("Cererea ta de deconectare este in curs de procesare...");
-                },
-                error: function () {
+						},
+						error: function () {
 					window.setTimeout(function(){
 					$("#trimite_cerere_deconectare").removeClass(\'btn-info\');
 					$("#trimite_cerere_deconectare").attr(\'disabled\', \' \');
 					$("#deconectare_anulare").removeClass(\'disabled\');
 					$("#trimite_cerere_deconectare").addClass(\'btn-danger\');
-                    $("#trimite_cerere_deconectare").html(\' <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> A aparut o eroare necunoscuta...\');
-                    toastr[\'error\']("Se pare ca a aparut o eroare neasteptata... Va rugam sa reincercati, iar daca problema persista sa anuntati un administrator la <a href=\'mailto:contact@baxandrei.ro\'>contact@baxandrei.ro</a>!");
+						$("#trimite_cerere_deconectare").html(\' <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> A aparut o eroare necunoscuta...\');
+						toastr[\'error\']("Se pare ca a aparut o eroare neasteptata... Va rugam sa reincercati, iar daca problema persista sa anuntati un administrator la <a href=\'mailto:contact@baxandrei.ro\'>contact@baxandrei.ro</a>!");
 					}, 1000);
                 }
             });
@@ -225,14 +225,17 @@ $(document).ready(function(){
         });'); ?>
 </script>
 <script>
-<?php echo criptare_js('        $("#schimbare_avatar").submit(function (e) {
+<?php echo criptare_js('
+  $("#schimbare_avatar").submit(function (e) {
             e.preventDefault();
             $.ajax({
                 type: "POST",
                 data: {
-                    adresa_avatar: $("#avatar").val()
+                    avatar: $("#avatar").val(),
+										nume: "'.$_COOKIE["utilizator"].'",
+										parola: "'.$_COOKIE["parola"].'"
                 },
-                url: "-actualizare_avatar/",
+                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_actualizare_avatar/'.id_radio.'",
                 dataType: "text",
                 success: function (result) {
 					if (result == "avatar_actualizat") {

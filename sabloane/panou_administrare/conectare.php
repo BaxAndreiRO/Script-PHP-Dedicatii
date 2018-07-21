@@ -46,9 +46,11 @@ echo criptare_js('
             var js_data_acum  = new Date();
             js_data_acum .setTime(js_data_acum .getTime() + (86400000));
             var js_expires_cookie = "expires="+ js_data_acum .toUTCString();
-            document.cookie = "utilizator="+result.nume_db+";"+js_expires_cookie;
-            document.cookie = "parola="+md5($("#parola").val())+";"+js_expires_cookie;
+            document.cookie = "utilizator="+result.nume_db+";"+js_expires_cookie+";path=/";
+            document.cookie = "parola="+md5($("#parola").val())+";"+js_expires_cookie+";path=/";
+            window.setTimeout(function(){
             window.location.href = "acasa";
+            }, 3010);
             }, 1000);
                     } else {
 						window.setTimeout(function(){

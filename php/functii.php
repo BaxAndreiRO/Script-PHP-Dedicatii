@@ -138,7 +138,7 @@ function stergere_continut_folder_mai_vechi_de($folder = null, $minute = null) {
 function obtine_date_remote($radio='nespecificat',$cerere='nespecificat',$utilizator='nespecificat',$parola='nespecificat') {
   stergere_continut_folder_mai_vechi_de('cache', timp_sergere_cache);
   $cache_ignora = array('exista_radio','remote_web','status_dedicatii','status_preferinte', 'status_suspendare','mentenanta',
-  'verifica_autentificare','obtine_nivel_acces');
+  'verifica_autentificare','obtine_nivel_acces','avatar_utilizator');
   if(in_array($cerere, $cache_ignora)) {
     if(!empty($radio) && !empty($cerere)) {
       return file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web/$radio-$cerere/$utilizator-$parola/");
@@ -289,6 +289,21 @@ function obtine_nivel_acces() {
 }
 /////////////////////////////////////////////////
 
+
+/////////////////////////////////////////////////
+// Functia care obtine avatarul utilizatorului.
+/////////////////////////////////////////////////
+function obtine_avatar_utilizator() {
+  if(conectat()) {
+    if(!empty($_COOKIE['utilizator'])) { $utilizator = $_COOKIE['utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['parola'])) { $parola = $_COOKIE['parola']; } else { $parola = 'nespecificat'; }
+    return obtine_date_remote(id_radio, 'avatar_utilizator', $utilizator, $parola);
+  } else {
+    return '';
+  }
+}
+/////////////////////////////////////////////////
+
 /////////////////////////////////////////////////
 // Functia care te redirectioneaza catre index daca esti conectat sau catre conectare daca nu esti conectat.
 /////////////////////////////////////////////////
@@ -299,5 +314,36 @@ if(!empty($_GET['acp'])) {
   } elseif(in_array($_GET['pagina'], $pagini_fara_conectare) && conectat()) {
     header('Location: acasa');
   }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care preia versiunea curenta a scriptului din fisier.
+/////////////////////////////////////////////////
+function versiune_script() {
+  if(file_exists('versiune_script')) {
+    $versiune_script = preg_replace('/[^0-9,.]/','',file_get_contents('versiune_script'));
+    $versiune_script = str_replace('...,,.','',$versiune_script);
+    return $versiune_script;
+  } else {
+    return false;
+  }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Funcita pentru deconectare.
+/////////////////////////////////////////////////
+if(!empty($_POST['trimite_cerere_deconectare'])) {
+  if (isset($_SERVER['HTTP_COOKIE'])) {
+    $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+    foreach($cookies as $cookie) {
+        $parts = explode('=', $cookie);
+        $name = trim($parts[0]);
+        setcookie($name, '', time()-1000);
+        setcookie($name, '', time()-1000, '/');
+    }
+exit('utilizator_deconectat');
+}
 }
 /////////////////////////////////////////////////
