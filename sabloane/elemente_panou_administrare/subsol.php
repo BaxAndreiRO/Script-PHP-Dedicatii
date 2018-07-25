@@ -1,5 +1,5 @@
 
-<center><kbd><a style="text-decoration:none;" href="https://github.com/BaxAndreiRO/Script-PHP-Dedicatii" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> Script de Dedicatii</a> <?php if(!empty(versiune_script())) { echo "- Versiunea ". versiune_script(); } ?> - By <a href="https://baxandrei.ro" style="text-decoration:none;" target="_blank">BaxAndrei.Ro</a></kbd></center><br>
+<center><kbd><a style="text-decoration:none;" href="https://github.com/BaxAndreiRO/Script-PHP-Dedicatii" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> Script de Dedicatii</a> <?php if(!empty(versiune_script())) { echo "- Versiunea <a href='https://github.com/BaxAndreiRO/Script-PHP-Dedicatii/releases' target='_blank'>".versiune_script()."</a>"; } ?> - By <a href="https://baxandrei.ro" style="text-decoration:none;" target="_blank">BaxAndrei.Ro</a></kbd></center><br>
 <br>
 
 	</div>

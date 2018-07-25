@@ -10,7 +10,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://www.cdn.baxandrei.ro/bax/adsbygoogle.js"></script>
 <link rel="stylesheet" href="https://www.main.baxandrei.ro/dedicatii-v2/public/css/meniu.css">
 <link rel="stylesheet" href="https://www.cdn.baxandrei.ro/bootstrap/css/yeti.css">
 <link rel="stylesheet" href="https://www.main.baxandrei.ro/dedicatii-v2/public/css/baxandrei.ro.css?<?php echo versiune_fisiere_no_cache; ?>">
