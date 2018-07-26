@@ -14,7 +14,7 @@
     <div class="form-group">
         <button style="margin-top:3px; margin-bottom:3px;" type="submit" name="trimite_login" id="trimite_login" class="btn btn-primary"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;Autentificare</button>
 		<br>
-		<a style="margin-top:3px; margin-bottom:3px;" id="resetare_parola" href="parola-pierduta" class="btn btn-default"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;&nbsp;Parola pierduta</a>
+		<a style="margin-top:3px; margin-bottom:3px;" id="resetare_parola" href="<?php echo adresa_url_site; ?>/admin/parola-pierduta/" class="btn btn-default"><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;&nbsp;Parola pierduta</a>
     </div>
   </fieldset>
 </form>
@@ -25,13 +25,16 @@
 <script>
 <?php
 
-echo criptare_js('
+if(!empty($_COOKIE['redirectionare_dupa_conectare'])) { $redirectionare_dupa_conectare = $_COOKIE['redirectionare_dupa_conectare']; } else { $redirectionare_dupa_conectare = 'acasa'; }
+
+echo ('
             $("#formular_conectare").submit(function (e) {
             e.preventDefault();
             $.ajax({
                 type: "POST",
                 data: {
                     nume: $("#nume").val(),
+                    ip: "'.$_SERVER['REMOTE_ADDR'].'",
                     parola: md5($("#parola").val())
                 },
                 url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_conectare/'.id_radio.'/",
@@ -49,7 +52,7 @@ echo criptare_js('
             document.cookie = "utilizator="+result.nume_db+";"+js_expires_cookie+";path=/";
             document.cookie = "parola="+md5($("#parola").val())+";"+js_expires_cookie+";path=/";
             window.setTimeout(function(){
-            window.location.href = "acasa";
+            window.location.href = "'.adresa_url_site.'/admin/'.$redirectionare_dupa_conectare.'/";
             }, 3010);
             }, 1000);
                     } else {

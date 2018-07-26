@@ -41,7 +41,7 @@ if(isset($_POST['pentru']) && isset($_POST['dela']) && isset($_POST['mesaj'])) {
 
 <div id="link-admin"<?php if(tip_acp_buton == 2) { ?> style="opacity:1!important;"<?php } ?>>
 <div class="btn-group-vertical">
-    <a style="margin-bottom:6px;margin-right:6px;" href="admin/" target="_blank" class="btn btn-default">Panou de Administrare</a>
+    <a style="margin-bottom:6px;margin-right:6px;" href="<?php echo adresa_url_site; ?>/admin/" target="_blank" class="btn btn-default">Panou de Administrare</a>
 </div>
 </div>
 <?php if(tip_fundal == 1 && fundal_transparent_iframe == 1) { ?><script>if (top != self) { document.getElementById('transparent').style.cssText = 'background:transparent!important;';}</script><?php } ?>

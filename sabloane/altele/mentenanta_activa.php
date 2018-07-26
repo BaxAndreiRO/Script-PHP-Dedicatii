@@ -21,7 +21,7 @@
 <article>
     <h1>Revenim curand!</h1>
     <div>
-        <p>Ne pare rau pentru neplacerile aduse odata cu punerea platformei in modul de mentenata, dar în prezent efectuam o întretinere a platformei. Intotdeauna ne puteti <a href="//baxandrei.ro/contact">contacta</a> daca aveti nelamuriri , vom reveni în curând online!</p>
+        <p>Ne pare rau pentru neplacerile aduse odata cu punerea platformei in modul de mentenata, dar în prezent efectuam o întretinere a platformei. Intotdeauna ne puteti <a href="https://www.baxandrei.ro/contact/">contacta</a> daca aveti nelamuriri , vom reveni în curând online!</p>
         <p>&mdash; Echipa de intretinere.</p>
     </div>
 </article>

@@ -14,11 +14,16 @@ define('id_radio','baxandrei');
 // De exemplu, avem adresa radioului: https://www.main.baxandrei.ro/dedicatii-v2/radio-baxandrei/
 // ID-ul este cea ce urmeaza dupa /radio- pana la / adica baxandrei.
 
+// Adresa URL site
+define('adresa_url_site','http://localhost:1998/Script-PHP-Dedicatii');
+// Adresa URL catre site-ul unde este instalat scriptul.
+// De exemplu: https://www.dedicatii.baxandrei.ro sau http://radio.baxandrei.ro/dedicatii
+// Atentie: Adresa nu trebuie sa se termine cu "/" la sfarsit!
+
 // Daca doriti sau nu sa se utilizeze AJAX
 define('activare_ajax','1');
-
-// Timp refresh AJAX in secunde
-define('timp_refresh_ajax','1');
+// Este utilizat pentru a incarca elementele fara a reincarca pagina.
+// 0 = oprit, 1 = pornit
 
 // Sterge fisierele mai vechi de X minute.
 define('timp_sergere_cache','60');

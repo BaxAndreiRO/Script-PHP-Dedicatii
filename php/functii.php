@@ -98,7 +98,7 @@ if(!empty($_GET['pagina']) && !empty($_GET['acp'])) {
   if($_GET['pagina'] == "noutati") { $titlu_pagina = "Noutati si actualizari"; }
   if($_GET['pagina'] == "intrebari-frecvente") { $titlu_pagina = "Intrebari frecvente"; }
   if($_GET['pagina'] == "situatie-financiara") { $titlu_pagina = "Situatie financiara"; }
-  if($_GET['pagina'] == "istoric-versiuni-platforma") { $titlu_pagina = "Istoric versiuni platforma"; }
+  if($_GET['pagina'] == "istoric-versiuni-script") { $titlu_pagina = "Istoric versiuni script"; }
 }
 if(!isset($titlu_pagina)) { $titlu_pagina = "Pagina specificata nu exista!"; }
 /////////////////////////////////////////////////
@@ -138,7 +138,9 @@ function stergere_continut_folder_mai_vechi_de($folder = null, $minute = null) {
 function obtine_date_remote($radio='nespecificat',$cerere='nespecificat',$utilizator='nespecificat',$parola='nespecificat') {
   stergere_continut_folder_mai_vechi_de('cache', timp_sergere_cache);
   $cache_ignora = array('exista_radio','remote_web','status_dedicatii','status_preferinte', 'status_suspendare','mentenanta',
-  'verifica_autentificare','obtine_nivel_acces','avatar_utilizator');
+  'verifica_autentificare','obtine_nivel_acces','avatar_utilizator','obtine_dedicatii_totale','obtine_vizite_totale',
+  'obtine_ultimele_5_autentificari','obtine_limite_radio','obtine_notificarile','obtine_istoric_versiuni',
+  'obtine_intrebari_frecvente');
   if(in_array($cerere, $cache_ignora)) {
     if(!empty($radio) && !empty($cerere)) {
       return file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web/$radio-$cerere/$utilizator-$parola/");
@@ -232,6 +234,7 @@ define('mesaj_eroare_necunoscuta',obtine_date_remote(id_radio, 'mesaj_eroare_nec
 define('mesaj_dedicatie_trimisa',obtine_date_remote(id_radio, 'mesaj_dedicatie_trimisa'));
 define('tip_banner_acp',obtine_date_remote(id_radio, 'tip_banner_acp'));
 define('adresa_radio',obtine_date_remote(id_radio, 'adresa_radio'));
+define('timp_refresh_ajax',obtine_date_remote(id_radio, 'timp_refresh_ajax'));
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
@@ -311,8 +314,10 @@ if(!empty($_GET['acp'])) {
   $pagini_fara_conectare = array('conectare');
   if(!in_array($_GET['pagina'], $pagini_fara_conectare) && !conectat()) {
     header('Location: conectare');
+    setcookie('redirectionare_dupa_conectare', $_GET['pagina'], time() + (10), "/");
   } elseif(in_array($_GET['pagina'], $pagini_fara_conectare) && conectat()) {
     header('Location: acasa');
+    setcookie('deja_autentificat', '1', time() + (5), "/");
   }
 }
 /////////////////////////////////////////////////
@@ -345,5 +350,131 @@ if(!empty($_POST['trimite_cerere_deconectare'])) {
     }
 exit('utilizator_deconectat');
 }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care obtine numarul total de dedicatii din ultimele 24H.
+/////////////////////////////////////////////////
+function obtine_dedicatii_totale() {
+  if(conectat()) {
+    if(!empty($_COOKIE['utilizator'])) { $utilizator = $_COOKIE['utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['parola'])) { $parola = $_COOKIE['parola']; } else { $parola = 'nespecificat'; }
+    return obtine_date_remote(id_radio, 'obtine_dedicatii_totale', $utilizator, $parola);
+  } else {
+    return '0';
+  }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care obtine numarul total de vizitatori din ultimele 24H.
+/////////////////////////////////////////////////
+function obtine_vizite_totale() {
+  if(conectat()) {
+    if(!empty($_COOKIE['utilizator'])) { $utilizator = $_COOKIE['utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['parola'])) { $parola = $_COOKIE['parola']; } else { $parola = 'nespecificat'; }
+    return obtine_date_remote(id_radio, 'obtine_vizite_totale', $utilizator, $parola);
+  } else {
+    return '0';
+  }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care obtine numele nivelului de acces din codul de acces.
+/////////////////////////////////////////////////
+function nivel_acces() {
+  switch (obtine_nivel_acces()) {
+    case 1:
+        $nivel_acces_user = "Dj";
+        break;
+    case 2:
+        $nivel_acces_user = "Admin";
+        break;
+    case 3:
+        $nivel_acces_user = "Operator";
+        break;
+  }
+  if(empty($nivel_acces_user)) { return "Vizitator"; } else { return $nivel_acces_user; }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care obtine ultimele autentificari in baza de date (maxim ultimele 5).
+/////////////////////////////////////////////////
+function obtine_ultimele_5_autentificari() {
+  if(conectat()) {
+    if(!empty($_COOKIE['utilizator'])) { $utilizator = $_COOKIE['utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['parola'])) { $parola = $_COOKIE['parola']; } else { $parola = 'nespecificat'; }
+    return obtine_date_remote(id_radio, 'obtine_ultimele_5_autentificari', $utilizator, $parola);
+  } else {
+    return '';
+  }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care obtine limitele curente ale radioului (minim nivel acces 3 setat din platforma).
+/////////////////////////////////////////////////
+function obtine_limite_radio() {
+  if(conectat()) {
+    if(!empty($_COOKIE['utilizator'])) { $utilizator = $_COOKIE['utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['parola'])) { $parola = $_COOKIE['parola']; } else { $parola = 'nespecificat'; }
+    return obtine_date_remote(id_radio, 'obtine_limite_radio', $utilizator, $parola);
+  } else {
+    return '';
+  }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care obtine notificarile necitite.
+/////////////////////////////////////////////////
+function obtine_notificarile() {
+  if(conectat()) {
+    if(!empty($_COOKIE['utilizator'])) { $utilizator = $_COOKIE['utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['parola'])) { $parola = $_COOKIE['parola']; } else { $parola = 'nespecificat'; }
+    return obtine_date_remote(id_radio, 'obtine_notificarile', $utilizator, $parola);
+  } else {
+    return '';
+  }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care obtine istoricul versiunilor.
+/////////////////////////////////////////////////
+function obtine_istoric_versiuni() {
+  if(conectat()) {
+    if(!empty($_COOKIE['utilizator'])) { $utilizator = $_COOKIE['utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['parola'])) { $parola = $_COOKIE['parola']; } else { $parola = 'nespecificat'; }
+    return obtine_date_remote(id_radio, 'obtine_istoric_versiuni', $utilizator, $parola);
+  } else {
+    return '';
+  }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care obtine noutatile.
+/////////////////////////////////////////////////
+function obtine_noutatile() {
+  if(conectat()) {
+    if(!empty($_COOKIE['utilizator'])) { $utilizator = $_COOKIE['utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['parola'])) { $parola = $_COOKIE['parola']; } else { $parola = 'nespecificat'; }
+    if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
+    return str_replace('xx_ADRESA_SITE_xx',adresa_url_site.'/admin/noutati/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_noutati/".id_radio."/$utilizator-$parola/$pagina_ceruta"));
+  } else {
+    return '';
+  }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care obtine intrebarile frecvente.
+/////////////////////////////////////////////////
+function obtine_intrebari_frecvente() {
+  return obtine_date_remote(id_radio, 'obtine_intrebari_frecvente');
 }
 /////////////////////////////////////////////////
