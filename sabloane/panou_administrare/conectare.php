@@ -27,7 +27,7 @@
 
 if(!empty($_COOKIE['redirectionare_dupa_conectare'])) { $redirectionare_dupa_conectare = $_COOKIE['redirectionare_dupa_conectare']; } else { $redirectionare_dupa_conectare = 'acasa'; }
 
-echo ('
+echo criptare_js('
             $("#formular_conectare").submit(function (e) {
             e.preventDefault();
             $.ajax({

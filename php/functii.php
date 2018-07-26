@@ -313,10 +313,10 @@ function obtine_avatar_utilizator() {
 if(!empty($_GET['acp'])) {
   $pagini_fara_conectare = array('conectare');
   if(!in_array($_GET['pagina'], $pagini_fara_conectare) && !conectat()) {
-    header('Location: conectare');
+    header('Location: '.adresa_url_site.'/admin/conectare/');
     setcookie('redirectionare_dupa_conectare', $_GET['pagina'], time() + (10), "/");
   } elseif(in_array($_GET['pagina'], $pagini_fara_conectare) && conectat()) {
-    header('Location: acasa');
+    header('Location: '.adresa_url_site.'/admin/acasa/');
     setcookie('deja_autentificat', '1', time() + (5), "/");
   }
 }

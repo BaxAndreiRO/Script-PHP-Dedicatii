@@ -114,7 +114,7 @@ $(document).ready(function(){
 						toastr[\'success\']("Datele introduse au fost corecte, iar parola a fost schimbata! Va vom deconecta din motive de securitate...");
                         $("#trimite_schimbare_parola").html(\'<i class="fa fa-refresh fa-spin" aria-hidden="true"></i> In curs de deconectare...\');
 						window.setTimeout(function(){
-                        window.location = "acasa";
+                        window.location = "'.adresa_url_site.'/admin/acasa/";
 						}, 3010);
 						}, 1000);
 
@@ -173,7 +173,7 @@ $(document).ready(function(){
                 data: {
                     trimite_cerere_deconectare: $("#trimite_cerere_deconectare").val()
                 },
-                url: "&deconectare",
+                url: "'.adresa_url_site.'/admin/acasa&deconectare",
                 dataType: "text",
                 success: function (result) {
 					if (result == "utilizator_deconectat") {
@@ -183,7 +183,7 @@ $(document).ready(function(){
 						toastr[\'success\']("Deconectarea a fost efecutata! In curs de deleogare...");
 						$("#trimite_cerere_deconectare").html(\'<i class="fa fa-refresh fa-spin" aria-hidden="true"></i> In curs de delogare...\');
 						window.setTimeout(function(){
-						window.location = "acasa";
+						window.location = "'.adresa_url_site.'/admin/acasa/";
 						}, 3010);
 						}, 1000);
 						} else {
