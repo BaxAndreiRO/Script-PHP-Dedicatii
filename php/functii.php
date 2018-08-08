@@ -249,7 +249,7 @@ function banat($ip = null) {
     }
   }
 }
-banat($_SERVER['REMOTE_ADDR']);
+if(empty($_GET['acp'])) { banat($_SERVER['REMOTE_ADDR']); }
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////

@@ -8,6 +8,13 @@ toastr['info']("Se pare ca deja esti autentificat, nu mai este nevoie sa te cone
 toastr['warning']("Se pare ca esti autentificat, pentru a reseta parola unui cont pierdut trebuie sa fi deconectat.");
 </script>
 <?php } ?>
+<?php
+if(!empty($_COOKIE['utilizator'])) {
+  $cookie_utilizator = $_COOKIE['utilizator'];
+} else {
+  $cookie_utilizator = 'nespecificat';
+}
+?>
 
 <?php echo obtine_notificarile(); ?>
 
@@ -49,11 +56,11 @@ new Chart(ctxP, {
     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Bun venit in panoul de administrare, <?php echo $_COOKIE['utilizator']; ?>.</h3>
+    <h3 class="panel-title">Bun venit in panoul de administrare, <?php echo $cookie_utilizator; ?>.</h3>
   </div>
   <div class="panel-body">
 
-<img src="<?php echo obtine_avatar_utilizator(); ?>" class="img-responsive img-thumbnail" align="left" width="100px" style="border-radius:5px; margin-right:5px; margin-botton:3px;"> Salutare <?php echo $_COOKIE['utilizator']; ?> si bun venit pe pagina principala de administrare a radioului <?php echo nume_radio; ?>.
+<img src="<?php echo obtine_avatar_utilizator(); ?>" class="img-responsive img-thumbnail" align="left" width="100px" style="border-radius:5px; margin-right:5px; margin-botton:3px;"> Salutare <?php echo $cookie_utilizator; ?> si bun venit pe pagina principala de administrare a radioului <?php echo nume_radio; ?>.
 <br><br>Nivelul tau de acces curent: <?php echo nivel_acces(); ?>
 <br><i><small>Daca vei incerca sa accesezi o pagina ce necesita un nivel mai mare de acces decat cel pe care il ai in prezent, vei primi o notificare asupra acestui fapt.</small></i>
   </div>
