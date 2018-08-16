@@ -165,6 +165,14 @@ function obtine_date_remote($radio='nespecificat',$cerere='nespecificat',$utiliz
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// Functia care afiseaza (daca este activat in setari) o pagina speciala cand Platforma de Dedicatii este in mentenanta.
+/////////////////////////////////////////////////
+if(obtine_date_remote(id_radio, 'mentenanta') == "in_lucru=1" &&  alerta_mentenanta == 1) {
+  exit(require_once('sabloane/altele/mentenanta_activa.php'));
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
 // Functia care verifica daca radioul specificat exista.
 /////////////////////////////////////////////////
 if(obtine_date_remote(id_radio, 'exista_radio') != 1) {
@@ -174,7 +182,7 @@ if(obtine_date_remote(id_radio, 'exista_radio') != 1) {
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
-// Functia care verifica daca radioul este sau nu suspendat.
+// Functia care verifica daca radioul specificat are sau nu remote_web activat.
 /////////////////////////////////////////////////
 if(obtine_date_remote(id_radio, 'remote_web') != 1) {
   echo obtine_date_remote(id_radio, 'exista_radio');
@@ -187,14 +195,6 @@ if(obtine_date_remote(id_radio, 'remote_web') != 1) {
 /////////////////////////////////////////////////
 if(obtine_date_remote(id_radio, 'status_suspendare') != "radio_activ") {
   exit(obtine_date_remote(id_radio, 'status_suspendare'));
-}
-/////////////////////////////////////////////////
-
-/////////////////////////////////////////////////
-// Functia care afiseaza (daca este activat in setari) o pagina speciala cand Platforma de Dedicatii este in mentenanta.
-/////////////////////////////////////////////////
-if(obtine_date_remote(id_radio, 'mentenanta') == "in_lucru=1" &&  alerta_mentenanta == 1) {
-  exit(require_once('sabloane/altele/mentenanta_activa.php'));
 }
 /////////////////////////////////////////////////
 

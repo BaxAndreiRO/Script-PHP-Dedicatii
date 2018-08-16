@@ -14,7 +14,7 @@ Am luat aceasta masura pentru a face complet inutila orice incercare de a pirata
 
  - Un cont pe [**Platforma de Dedicatii**](https://main.baxandrei.ro/dedicatii-v2/).
  - Din contul de pe [**Platforma de Dedicatii**](https://main.baxandrei.ro/dedicatii-v2/) sa aveti activata functia **'Utilizare script pe site propriu'** in sectiunea *Magazin*.
-- Functia **curl** activa.
-- Functia **file_get_contents** activa.
-- Un cont pe [**Platforma de Dedicatii**](https://main.baxandrei.ro/dedicatii-v2/).
+ - Functia **curl** activa.
+ - Functia **file_get_contents** activa.
+ - Un cont pe [**Platforma de Dedicatii**](https://main.baxandrei.ro/dedicatii-v2/).
  - O viteza de internet rezonabila atat pentru server cat si pentru client.
