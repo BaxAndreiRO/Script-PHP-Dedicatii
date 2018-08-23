@@ -66,9 +66,12 @@
  */
  
 namespace Tholu\Packer;
+
+
 class Packer {
 	// constants
 	const IGNORE = '$1';
+
 	// validate parameters
 	private $_script = '';
 	private $_encoding = 62;
@@ -142,6 +145,7 @@ class Packer {
 		}
 		// apply the above
 		$script = $parser->exec($script);
+
 		// remove white-space
 		$parser->add('/(\\b|\\x24)\\s+(\\b|\\x24)/', '$2 $3');
 		$parser->add('/([+\\-])\\s+([+\\-])/', '$2 $3');
@@ -282,13 +286,17 @@ class Packer {
 	// build the boot function used for loading and decoding
 	private function _bootStrap($packed, $keywords) {
 		$ENCODE = $this->_safeRegExp('$encode\\($count\\)');
+
 		// $packed: the packed script
 		$packed = "'" . $this->_escape($packed) . "'";
+
 		// $ascii: base for encoding
 		$ascii = min(count($keywords['sorted']), $this->_encoding);
 		if ($ascii == 0) $ascii = 1;
+
 		// $count: number of words contained in the script
 		$count = count($keywords['sorted']);
+
 		// $keywords: list of words contained in the script
 		foreach ($keywords['protected'] as $i=>$value) {
 			$keywords['sorted'][$i] = '';
@@ -296,11 +304,13 @@ class Packer {
 		// convert from a string to an array
 		ksort($keywords['sorted']);
 		$keywords = "'" . implode('|',$keywords['sorted']) . "'.split('|')";
+
 		$encode = ($this->_encoding > 62) ? '_encode95' : $this->_getEncoder($ascii);
 		$encode = $this->_getJSFunction($encode);
 		$encode = preg_replace('/_encoding/','$ascii', $encode);
 		$encode = preg_replace('/arguments\\.callee/','$encode', $encode);
 		$inline = '\\$count' . ($ascii > 10 ? '.toString(\\$ascii)' : '');
+
 		// $decode: code snippet to speed up decoding
 		if ($this->_fastDecode) {
 			// create the decoder
@@ -315,6 +325,7 @@ class Packer {
 			if ($count == 0)
 				$decode = preg_replace($this->_safeRegExp('($count)\\s*=\\s*1'), '$1=0', $decode, 1);
 		}
+
 		// boot function
 		$unpack = $this->_getJSFunction('_unpack');
 		if ($this->_fastDecode) {
@@ -448,6 +459,7 @@ class Packer {
 	//  this function when decoded in the target
 	// NOTE ! : without the ';' final.
 	const JSFUNCTION_unpack =
+
 'function($packed, $ascii, $count, $keywords, $encode, $decode) {
     while ($count--) {
         if ($keywords[$count]) {
@@ -470,6 +482,7 @@ class Packer {
 //_decode = function() {
 // does the browser support String.replace where the
 //  replacement value is a function?
+
 '    if (!\'\'.replace(/^/, String)) {
         // decode all the values we need
         while ($count--) {
@@ -528,6 +541,8 @@ class Packer {
 }'; 
 	
 }
+
+
 class ParseMaster {
 	public $ignoreCase = false;
 	public $escapeChar = '';
@@ -609,6 +624,7 @@ class ParseMaster {
 		// clear the patterns collection so that this object may be re-used
 		$this->_patterns = array();
 	}
+
 	// private
 	private $_escaped = array();  // escaped characters
 	private $_patterns = array(); // patterns stored by index

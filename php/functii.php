@@ -202,7 +202,7 @@ if(obtine_date_remote(id_radio, 'status_suspendare') != "radio_activ") {
 // Functia pentru criptarea javascript.
 /////////////////////////////////////////////////
 function criptare_js($cod_js=null) {
-  require_once('criptator_js.php');
+  require_once('librari-php/php-packer/Packer.php');
   $packer = new Tholu\Packer\Packer($cod_js, 'Normal', true, false, true);
   return "// BaxAndrei.Ro Security V1 \r\n".str_replace("\n","",$packer->pack())."\n";
 }
