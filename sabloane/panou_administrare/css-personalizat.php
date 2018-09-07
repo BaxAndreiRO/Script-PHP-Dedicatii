@@ -55,7 +55,7 @@ Daca doriti sa importati un fisier CSS mai mare, va recomandam sa folositi <code
                     utilizator: "'.$_COOKIE["utilizator"].'",
                     hash_p: "'.$_COOKIE["parola"].'"
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_css_personalizat/'.id_radio.'",
+                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_css_personalizat/'.id_radio.'-'.cheie_secreta.'",
                 dataType: "text",
                 success: function (result) {
 					if (result == "css_actualizat") {

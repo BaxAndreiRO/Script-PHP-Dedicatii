@@ -7,7 +7,7 @@ $date_dedicatie = array(
     'ip' => $_SERVER['REMOTE_ADDR']
 );
 
-$adauga_dedicatia = 'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_dedicatii/'.id_radio.'/';
+$adauga_dedicatia = 'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_dedicatii/'.id_radio.'-'.cheie_secreta.'/';
 $curl = curl_init($adauga_dedicatia);
 
 $date_dedicatie_prelucrate = http_build_query($date_dedicatie, '', '&');

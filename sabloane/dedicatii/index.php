@@ -67,7 +67,7 @@ if(isset($_POST['pentru']) && isset($_POST['dela']) && isset($_POST['mesaj'])) {
 <script>
 <?php echo criptare_js('if ($.fn.modal) {
 window.setInterval(function(){
-$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/resurse-dinamice/'.id_radio.'-status_dedicatii/\', function(status_dedicatii) {
+$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web/'.id_radio.'-'.cheie_secreta.'-status_dedicatii/vizitator-vizitator/\', function(status_dedicatii) {
 var status_dedicatii1 = status_dedicatii.replace("(", "");
 var status_dedicatii2 = status_dedicatii1.replace(")", "");
 var status_dedicatii3 = status_dedicatii2.replace(" ", "");
@@ -98,7 +98,7 @@ $(\'#alerta-dedicatii-modal\').modal(\'hide\');
 <script>
 <?php echo criptare_js('if ($.fn.modal) {
 window.setInterval(function(){
-$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/resurse-dinamice/'.id_radio.'-status_dedicatii/\', function(status_dedicatii) {
+$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web/'.id_radio.'-'.cheie_secreta.'-status_dedicatii/vizitator-vizitator/\', function(status_dedicatii) {
 var status_dedicatii1 = status_dedicatii.replace("(", "");
 var status_dedicatii2 = status_dedicatii1.replace(")", "");
 var status_dedicatii3 = status_dedicatii2.replace(" ", "");

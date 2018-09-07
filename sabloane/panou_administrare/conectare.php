@@ -37,7 +37,7 @@ echo criptare_js('
                     ip: "'.$_SERVER['REMOTE_ADDR'].'",
                     parola: md5($("#parola").val())
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_conectare/'.id_radio.'/",
+                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_conectare/'.id_radio.'-'.cheie_secreta.'/",
                 dataType: "json",
                 success: function (result) {
 					if (result.date_corecte == "da") {

@@ -14,6 +14,10 @@ define('id_radio','baxandrei');
 // De exemplu, avem adresa radioului: https://www.main.baxandrei.ro/dedicatii-v2/radio-baxandrei/
 // ID-ul este cea ce urmeaza dupa /radio- pana la / adica baxandrei.
 
+// Cheie secreta
+define('cheie_secreta','');
+// ... in curand mai multe detalii.
+
 // Adresa URL site
 define('adresa_url_site','http://localhost:1998/Script-PHP-Dedicatii');
 // Adresa URL catre site-ul unde este instalat scriptul.
