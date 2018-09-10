@@ -348,6 +348,10 @@ function versiune_script() {
 // Funcita pentru deconectare.
 /////////////////////////////////////////////////
 if(!empty($_POST['trimite_cerere_deconectare'])) {
+  if(!empty($_COOKIE['utilizator'])) { $utilizator = $_COOKIE['utilizator']; } else { $utilizator = 'nespecificat'; }
+  if(!empty($_COOKIE['parola'])) { $parola = $_COOKIE['parola']; } else { $parola = 'nespecificat'; }
+  // trimite confirmare decoenctare
+  file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web/".id_radio."-".cheie_secreta."-confirmare_deconectare/$utilizator-$parola/");
   if (isset($_SERVER['HTTP_COOKIE'])) {
     $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
     foreach($cookies as $cookie) {
