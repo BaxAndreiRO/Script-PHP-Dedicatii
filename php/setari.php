@@ -12,11 +12,17 @@
 define('id_radio','baxandrei');
 // Acesta se obtine foarte simplu din adresa de pe Platforma de Dedicatii.
 // De exemplu, avem adresa radioului: https://www.main.baxandrei.ro/dedicatii-v2/radio-baxandrei/
-// ID-ul este cea ce urmeaza dupa /radio- pana la / adica baxandrei.
+// ID-ul este cea ce urmeaza dupa '/radio-' pana la '/' adica baxandrei.
 
 // Cheie secreta
 define('cheie_secreta','');
-// ... in curand mai multe detalii.
+// Pentru a obtine cheia secreta trebuie sa te conectezi in panoul de administrare de pe Platforma de Dedicatii.
+// Odata autentificat, trebuie sa apesi pe butonul 'Magazin' din meniul lateral.
+//
+// Acolo vom cauta 'Utilizare script pe site propriu', iar daca sub imagine scrie 'activ pana pe XX.XX.XXXX'
+// vom apasa pe semnul de intrebare de langa acest text, apoi ne va aparea un dialog unde se va afla codul nostru si cateva date despre el.
+//
+// Daca sub imagine scrie 'inactiv' inseamna ca nu aveti activa inca aceasta functie si va trebui sa o achizitionati, dupa care trebuie sa faceti ceea ce scrie mai sus.
 
 // Adresa URL site
 define('adresa_url_site','http://localhost:1998/Script-PHP-Dedicatii');

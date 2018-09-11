@@ -29,7 +29,7 @@
               Se pare ca radioul speicifcat nu are activata functia <kbd>remote web</kbd>, functie ce este necesara pentru ca scriptul sa functioneze. Pentru a te asigura ca ai sau nu <kbd>remote web</kbd>, poti intra sa te conectezi pe radioul tau din <a href="https://www.main.baxandrei.ro/dedicatii-v2/radio-<?php echo id_radio; ?>/admin/" target="_blank">Platforma de Dedicatii</a> si sa verifici la sectiunea Magazin daca articolul 'Utilizare script pe site propriu' are statusul <kbd>inactiv</kbd> sau <kbd>activ pana pe XX.XX.XXXX</kbd>.
               <br>
               <br>
-              Daca aveti nevoie de ajutor puteti vizita pagina noastra de <a href="https://github.com/BaxAndreiRO/Script-PHP-Dedicatii" target="_blank">GitHub</a> sau folosind <a href="https://www.baxandrei.ro/contact/?departament=Departament%20pentru%20Probleme" target="_blank">formularul de contact</a>.
+              Daca aveti nevoie de ajutor puteti vizita pagina noastra de <a href="https://github.com/BaxAndreiRO/Script-PHP-Dedicatii" target="_blank">GitHub</a> sau sa folositi <a href="https://www.baxandrei.ro/contact/?departament=Departament%20pentru%20Probleme" target="_blank">formularul nostru de contact</a>.
             </div>
           </div>
         </div>
