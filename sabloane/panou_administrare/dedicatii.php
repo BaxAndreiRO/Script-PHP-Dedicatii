@@ -52,78 +52,72 @@ if(activare_ajax) {
 $ded_js1_aj = '
 // Reimprospatare nr dedicatii in titlu.
 $.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-nr_dedicatii/'.$utilizator.'-'.$parola.'/\', function(adauga_in_titlu_nr_dedicatii) {
-document.title = ""+ adauga_in_titlu_nr_dedicatii +"Radio '.nume_radio.' - '. $titlu_pagina.'";
+	document.title = ""+ adauga_in_titlu_nr_dedicatii +"Radio '.nume_radio.' - '. $titlu_pagina.'";
 });
 
 // > Inceput sir de functii ce se repeta la fiecare X secunde (se modifica din setari sistem).
 window.setInterval(function(){
-// Functia care verifica daca exista dedicatii noi
-$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-nr_dedicatii/'.$utilizator.'-'.$parola.'/\', function(obtine_nr_dedicatii_din_site_pt_js) {
-var obtine_nr_dedicatii_din_site_pt_js1 = obtine_nr_dedicatii_din_site_pt_js.replace("(", "");
-var obtine_nr_dedicatii_din_site_pt_js2 = obtine_nr_dedicatii_din_site_pt_js1.replace(")", "");
-var obtine_nr_dedicatii_din_site_pt_js3 = obtine_nr_dedicatii_din_site_pt_js2.replace(" ", "");
-if($.cookie("cookie_temporar_numar_dedicatii") == "undefined") {
-var js_data_acum  = new Date();
-js_data_acum .setTime(js_data_acum .getTime() + (60*5000));
-var js_expires_cookie = "expires="+ js_data_acum .toUTCString();
-document.cookie = "cookie_temporar_numar_dedicatii="+obtine_nr_dedicatii_din_site_pt_js3+";"+js_expires_cookie;
-} else {
-// Functia pentru reinprospatarea dedicatiilor in caz ca se sterge sau se adauga una noua.
-if($.cookie("cookie_temporar_numar_dedicatii") != obtine_nr_dedicatii_din_site_pt_js3) {
-$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-dedicatii/'.$utilizator.'-'.$parola.'/\', function(reincarca_elementul_cu_dedicatii) {
-document.getElementById("dedicatii").innerHTML = ""+ reincarca_elementul_cu_dedicatii +"";
-//var js_data_acum  = new Date();
-//js_data_acum .setTime(js_data_acum .getTime() + (60*5000));
-//var js_expires_cookie = "expires="+ js_data_acum .toUTCString();
-//document.cookie = "cookie_temporar_numar_dedicatii="+obtine_nr_dedicatii_din_site_pt_js3+";"+js_expires_cookie;
 
-var js_expires_cookie = "expires=Thu, 01 Jan 1970 00:00:01 GMT";
-document.cookie = "cookie_temporar_numar_dedicatii="+obtine_nr_dedicatii_din_site_pt_js3+";"+js_expires_cookie;
-});
-// Functie care reinprospateaza nr dedicatiilor in titlu.
-$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-nr_dedicatii/'.$utilizator.'-'.$parola.'/\', function(adauga_in_titlu_nr_dedicatii) {
-document.title = ""+ adauga_in_titlu_nr_dedicatii +"Radio '.nume_radio.' - '. $titlu_pagina.'";
-});
-}
-}
-});
+	// Functia care verifica daca exista dedicatii noi
+	$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-nr_dedicatii/'.$utilizator.'-'.$parola.'/\', function(obtine_nr_dedicatii_din_site_pt_js) {
+		var obtine_nr_dedicatii_din_site_pt_js1 = obtine_nr_dedicatii_din_site_pt_js.replace("(", "");
+		var obtine_nr_dedicatii_din_site_pt_js2 = obtine_nr_dedicatii_din_site_pt_js1.replace(")", "");
+		var obtine_nr_dedicatii_din_site_pt_js3 = obtine_nr_dedicatii_din_site_pt_js2.replace(" ", "");
+		if($.cookie("cookie_temporar_numar_dedicatii") == "undefined") {
+			var js_data_acum  = new Date();
+			js_data_acum .setTime(js_data_acum .getTime() + (60*5000));
+			var js_expires_cookie = "expires="+ js_data_acum .toUTCString();
+			document.cookie = "cookie_temporar_numar_dedicatii="+obtine_nr_dedicatii_din_site_pt_js3+";"+js_expires_cookie;
+		} else {
+			// Functia pentru reinprospatarea dedicatiilor in caz ca se sterge sau se adauga una noua.
+			if($.cookie("cookie_temporar_numar_dedicatii") != obtine_nr_dedicatii_din_site_pt_js3) {
+				$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-dedicatii/'.$utilizator.'-'.$parola.'/\', function(reincarca_elementul_cu_dedicatii) {
+					document.getElementById("dedicatii").innerHTML = ""+ reincarca_elementul_cu_dedicatii +"";
+					var js_expires_cookie = "expires=Thu, 01 Jan 1970 00:00:01 GMT";
+					document.cookie = "cookie_temporar_numar_dedicatii="+obtine_nr_dedicatii_din_site_pt_js3+";"+js_expires_cookie;
+				});
+				// Functie care reinprospateaza nr dedicatiilor in titlu.
+				$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-nr_dedicatii/'.$utilizator.'-'.$parola.'/\', function(adauga_in_titlu_nr_dedicatii) {
+					document.title = ""+ adauga_in_titlu_nr_dedicatii +"Radio '.nume_radio.' - '. $titlu_pagina.'";
+				});
+			}
+		}
+	});
 
-// Functia care reincarca automat butoanele de control al dedicatiilor in caz ca se pornesc sau se opresc dedicatiile ori preferintele.
-$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-status_dedicatii_si_preferinte/'.$utilizator.'-'.$parola.'/\', function(obtine_status_dedicati_si_preferintei_din_site_pt_js) {
-var obtine_status_dedicati_si_preferintei_din_site_pt_js1 = obtine_status_dedicati_si_preferintei_din_site_pt_js.replace("(", "");
-var obtine_status_dedicati_si_preferintei_din_site_pt_js2 = obtine_status_dedicati_si_preferintei_din_site_pt_js1.replace(")", "");
-var obtine_status_dedicati_si_preferintei_din_site_pt_js3 = obtine_status_dedicati_si_preferintei_din_site_pt_js2.replace(" ", "");
-if($.cookie("cookie_temporar_status_dedicatii_si_preferinte") == "undefined") {
-var js_data_acum  = new Date();
-js_data_acum .setTime(js_data_acum .getTime() + (60*5000));
-var js_expires_cookie = "expires="+ js_data_acum .toUTCString();
-document.cookie = "cookie_temporar_status_dedicatii_si_preferinte="+obtine_status_dedicati_si_preferintei_din_site_pt_js3+";"+js_expires_cookie;
-} else {
-if($.cookie("cookie_temporar_status_dedicatii_si_preferinte") != obtine_status_dedicati_si_preferintei_din_site_pt_js3) {
-$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-reincarca_butoanele_control_dedicatii/'.$utilizator.'-'.$parola.'/\', function(reincarca_butoanele_control_dedicatii) {
-document.getElementById("bxcontrolls").innerHTML = ""+ reincarca_butoanele_control_dedicatii +"";
-//var js_data_acum  = new Date();
-//js_data_acum .setTime(js_data_acum .getTime() + (60*5000));
-//var js_expires_cookie = "expires="+ js_data_acum .toUTCString();
-//document.cookie = "cookie_temporar_status_dedicatii_si_preferinte="+obtine_status_dedicati_si_preferintei_din_site_pt_js3+";"+js_expires_cookie;
+	// Functia care reincarca automat butoanele de control al dedicatiilor in caz ca se pornesc sau se opresc dedicatiile ori preferintele.
+	$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-status_dedicatii_si_preferinte/'.$utilizator.'-'.$parola.'/\', function(obtine_status_dedicati_si_preferintei_din_site_pt_js) {
+		var obtine_status_dedicati_si_preferintei_din_site_pt_js1 = obtine_status_dedicati_si_preferintei_din_site_pt_js.replace("(", "");
+		var obtine_status_dedicati_si_preferintei_din_site_pt_js2 = obtine_status_dedicati_si_preferintei_din_site_pt_js1.replace(")", "");
+		var obtine_status_dedicati_si_preferintei_din_site_pt_js3 = obtine_status_dedicati_si_preferintei_din_site_pt_js2.replace(" ", "");
+		if($.cookie("cookie_temporar_status_dedicatii_si_preferinte") == "undefined") {
+			var js_data_acum  = new Date();
+			js_data_acum .setTime(js_data_acum .getTime() + (60*5000));
+			var js_expires_cookie = "expires="+ js_data_acum .toUTCString();
+			document.cookie = "cookie_temporar_status_dedicatii_si_preferinte="+obtine_status_dedicati_si_preferintei_din_site_pt_js3+";"+js_expires_cookie;
+		} else {
+			if($.cookie("cookie_temporar_status_dedicatii_si_preferinte") != obtine_status_dedicati_si_preferintei_din_site_pt_js3) {
+				$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-reincarca_butoanele_control_dedicatii/'.$utilizator.'-'.$parola.'/\', function(reincarca_butoanele_control_dedicatii) {
+					document.getElementById("bxcontrolls").innerHTML = ""+ reincarca_butoanele_control_dedicatii +"";
+					var js_expires_cookie = "expires=Thu, 01 Jan 1970 00:00:01 GMT";
+					document.cookie = "cookie_temporar_status_dedicatii_si_preferinte="+obtine_status_dedicati_si_preferintei_din_site_pt_js3+";"+js_expires_cookie;
+				});
+			}
+		}
+	});
 
-var js_expires_cookie = "expires=Thu, 01 Jan 1970 00:00:01 GMT";
-document.cookie = "cookie_temporar_status_dedicatii_si_preferinte="+obtine_status_dedicati_si_preferintei_din_site_pt_js3+";"+js_expires_cookie;
-});
-}
-}
-});
+	// Functia care deconecteaza utilizatorul in caz ca parola a fost schimbata, numele de utilizator schimbat ori contul sters.
+		$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-status_utilizator/'.$utilizator.'-'.$parola.'/\', function(datele_sunt_corecte) {
+		var status_curent = 1;
+		if(datele_sunt_corecte != status_curent) {
+			alert("Se pare ca a aparut o problema suspecta! Pagina se va reincarca...");
+			location.reload();
+		}
+	});
 
-// Functia care deconecteaza utilizatorul in caz ca parola a fost schimbata, numele de utilizator schimbat ori contul sters.
-$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-status_utilizator/'.$utilizator.'-'.$parola.'/\', function(datele_sunt_corecte) {
-var status_curent = 1;
-if(datele_sunt_corecte != status_curent) { alert("Se pare ca a aparut o problema suspecta! Pagina se va reincarca..."); location.reload(); }
-});
-
-// Functie care reinprospateaza statusul dedicatiilor (OFF = avertisment vizual).
-$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-status_dedicatii_on_sau_off/'.$utilizator.'-'.$parola.'/\', function(status_dedicatii_on_sau_off) {
-document.getElementById("bax_avertizare_dedicatii").innerHTML = ""+ status_dedicatii_on_sau_off +"";
-});
+	// Functie care reinprospateaza statusul dedicatiilor (OFF = avertisment vizual).
+	$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-status_dedicatii_on_sau_off/'.$utilizator.'-'.$parola.'/\', function(status_dedicatii_on_sau_off) {
+		document.getElementById("bax_avertizare_dedicatii").innerHTML = ""+ status_dedicatii_on_sau_off +"";
+	});
 
 }, '. timp_refresh_ajax * 1000 .');
 // > Sfarsit sir de functii ce se repeta la fiecare X secunde (se modifica din setari sistem).
@@ -135,16 +129,16 @@ $ded_js1_aj = '';
 
 <script>
 <?php echo criptare_js('// Reimprospatare date dedicatii.
-$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-dedicatii/'.$utilizator.'-'.$parola.'/\', function(reincarca_elementul_cu_dedicatii) {
+	$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-dedicatii/'.$utilizator.'-'.$parola.'/\', function(reincarca_elementul_cu_dedicatii) {
 document.getElementById("dedicatii").innerHTML = ""+ reincarca_elementul_cu_dedicatii +"";
 });
 
 // Reimprospatare status dedicatii (OFF = avertisment vizual).
-$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-status_dedicatii_on_sau_off/'.$utilizator.'-'.$parola.'/\', function(status_dedicatii_on_sau_off) {
+	$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-status_dedicatii_on_sau_off/'.$utilizator.'-'.$parola.'/\', function(status_dedicatii_on_sau_off) {
 document.getElementById("bax_avertizare_dedicatii").innerHTML = ""+ status_dedicatii_on_sau_off +"";
 });
 // Reimprospatare butoane dedicatii.
-$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-reincarca_butoanele_control_dedicatii/'.$utilizator.'-'.$parola.'/\', function(reincarca_butoanele_control_dedicatii) {
+	$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_dedicatii/'.$radio.'-'.$cheie_secreta.'-reincarca_butoanele_control_dedicatii/'.$utilizator.'-'.$parola.'/\', function(reincarca_butoanele_control_dedicatii) {
 document.getElementById("bxcontrolls").innerHTML = ""+ reincarca_butoanele_control_dedicatii +"";
 });
 
