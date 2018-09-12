@@ -14,7 +14,7 @@
                 data: {
                     golire_istoric: \'da\'
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web/'.id_radio.'-'.cheie_secreta.'-golire_istoric_conectari/'.$_COOKIE["utilizator"].'-'.$_COOKIE["parola"].'/",
+                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web/'.id_radio.'-'.cheie_secreta.'-golire_istoric_conectari/'.$utilizator.'-'.$parola.'/",
                 dataType: "text",
                 success: function (result) {
 					if (result == "istoric_golit") {

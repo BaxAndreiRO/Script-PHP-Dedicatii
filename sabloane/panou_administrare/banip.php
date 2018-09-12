@@ -35,14 +35,7 @@
   </div>
   <div class="panel-body">
 
-<?php
-if(!defined('id_radio')) { $radio = null; } else { $radio = id_radio; }
-if(!defined('cheie_secreta')) { $cheie_secreta = null; } else { $cheie_secreta = cheie_secreta; }
-if(!empty($_COOKIE['utilizator'])) { $utilizator = $_COOKIE['utilizator']; } else { $utilizator = 'nespecificat'; }
-if(!empty($_COOKIE['parola'])) { $parola = $_COOKIE['parola']; } else { $parola = 'nespecificat'; }
-
-echo obtine_banuri();
-?>
+<?php echo obtine_banuri(); ?>
 
   </div>
 </div>
@@ -66,7 +59,7 @@ echo obtine_banuri();
                     id: id,
                     ip: ip
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_banip/'.$radio.'-'.$cheie_secreta.'-unban_ip/'.$utilizator.'-'.$parola.'/",
+                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_banip/'.id_radio.'-'.cheie_secreta.'-unban_ip/'.$utilizator.'-'.$parola.'/",
                 dataType: "json",
                 success: function (result) {
 					if (result.ip_debanat) {
@@ -108,7 +101,7 @@ echo obtine_banuri();
                     ip2: $("#ban_ip2").val(),
                     motiv: $("#motiv_ban").val()
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_banip/'.$radio.'-'.$cheie_secreta.'-ban_ip/'.$utilizator.'-'.$parola.'/",
+                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_banip/'.id_radio.'-'.cheie_secreta.'-ban_ip/'.$utilizator.'-'.$parola.'/",
                 dataType: "json",
                 success: function (result) {
 					if (result.ip_banat) {

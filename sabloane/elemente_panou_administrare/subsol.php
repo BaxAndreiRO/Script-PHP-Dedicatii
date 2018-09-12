@@ -74,7 +74,7 @@
 <div style="display: table;position: absolute;height: 100%;width: 100%;">
   <div style="display: table-cell;vertical-align: middle;">
     <div style="margin-left: auto;margin-right: auto; width:100%;padding: 100px 0px 100px 0px;background: #eeeeee; z-index:1000;">
-      <h4><center><?php echo $_COOKIE['utilizator']; ?>, esti sigur ca doresti sa te deconectezi?</center></h4>
+      <h4><center><?php echo $utilizator; ?>, esti sigur ca doresti sa te deconectezi?</center></h4>
 	  <br><br>
 	  <center><form id="form_deconectare">
 	  <button type="button" class="btn btn-default" data-dismiss="modal" id="deconectare_anulare"> <i class="fa fa-times-circle" aria-hidden="true"></i> Anuleaza</button>
@@ -101,7 +101,7 @@ $(document).ready(function(){
                 data: {
                     parolanoua: md5($("#parola_noua_1").val()),
                     parolanouaconfirmare: md5($("#parola_noua_2").val()),
-										nume: "'.$_COOKIE["utilizator"].'",
+										nume: "'.$utilizator.'",
 										parola: md5($("#parola_veche").val())
                 },
                 url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_actualizare_parola/'.id_radio.'-'.cheie_secreta.'",
@@ -232,8 +232,8 @@ $(document).ready(function(){
                 type: "POST",
                 data: {
                     avatar: $("#avatar").val(),
-										nume: "'.$_COOKIE["utilizator"].'",
-										parola: "'.$_COOKIE["parola"].'"
+										nume: "'.$utilizator.'",
+										parola: "'.$parola.'"
                 },
                 url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_actualizare_avatar/'.id_radio.'-'.cheie_secreta.'",
                 dataType: "text",

@@ -52,8 +52,8 @@ Daca doriti sa importati un fisier CSS mai mare, va recomandam sa folositi <code
                 type: "POST",
                 data: {
                     css: Base64.encode($("#editor_css_personalizat").val()),
-                    utilizator: "'.$_COOKIE["utilizator"].'",
-                    hash_p: "'.$_COOKIE["parola"].'"
+                    utilizator: "'.$utilizator.'",
+                    hash_p: "'.$parola.'"
                 },
                 url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_css_personalizat/'.id_radio.'-'.cheie_secreta.'",
                 dataType: "text",

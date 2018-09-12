@@ -49,8 +49,8 @@ echo criptare_js('
             var js_data_acum  = new Date();
             js_data_acum .setTime(js_data_acum .getTime() + (86400000));
             var js_expires_cookie = "expires="+ js_data_acum .toUTCString();
-            document.cookie = "utilizator="+result.nume_db+";"+js_expires_cookie+";path=/";
-            document.cookie = "parola="+md5($("#parola").val())+";"+js_expires_cookie+";path=/";
+            document.cookie = "dedicatii_utilizator="+result.nume_db+";"+js_expires_cookie+";path=/";
+            document.cookie = "dedicatii_parola="+md5($("#parola").val())+";"+js_expires_cookie+";path=/";
             window.setTimeout(function(){
             window.location.href = "'.adresa_url_site.'/admin/'.$redirectionare_dupa_conectare.'/";
             }, 3010);
