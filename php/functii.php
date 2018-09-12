@@ -217,7 +217,7 @@ function criptare_js($cod_js=null) {
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
-// Definire variabile site.
+// Definire setari site.
 /////////////////////////////////////////////////
 define('versiune_fisiere_no_cache',obtine_date_remote('versiune_fisiere_no_cache'));
 define('nume_radio',obtine_date_remote('nume_radio'));
@@ -360,8 +360,8 @@ if(!empty($_POST['trimite_cerere_deconectare'])) {
         setcookie($name, '', time()-1000);
         setcookie($name, '', time()-1000, '/');
     }
-exit('utilizator_deconectat');
-}
+    exit('utilizator_deconectat');
+  }
 }
 /////////////////////////////////////////////////
 
@@ -488,5 +488,35 @@ function obtine_noutatile() {
 /////////////////////////////////////////////////
 function obtine_intrebari_frecvente() {
   return obtine_date_remote('obtine_intrebari_frecvente');
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care obtine lista cu IP-urile banate.
+/////////////////////////////////////////////////
+function obtine_banuri() {
+  if(conectat()) {
+    if(!empty($_COOKIE['utilizator'])) { $utilizator = $_COOKIE['utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['parola'])) { $parola = $_COOKIE['parola']; } else { $parola = 'nespecificat'; }
+    if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
+    return str_replace('xx_ADRESA_SITE_xx',adresa_url_site.'/admin/banip/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_banuri/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
+  } else {
+    return '';
+  }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care obtine istoricul conectarilor.
+/////////////////////////////////////////////////
+function obtine_istoric_conectari() {
+  if(conectat()) {
+    if(!empty($_COOKIE['utilizator'])) { $utilizator = $_COOKIE['utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['parola'])) { $parola = $_COOKIE['parola']; } else { $parola = 'nespecificat'; }
+    if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
+    return str_replace('xx_ADRESA_SITE_xx',adresa_url_site.'/admin/istoric-conectari/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_istoric_conectari/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
+  } else {
+    return '';
+  }
 }
 /////////////////////////////////////////////////
