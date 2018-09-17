@@ -119,6 +119,25 @@ if(empty(id_radio)) {
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// Functie pentru a sterge complet un folder.
+/////////////////////////////////////////////////
+function stergere_continut_folder($folder = null) {
+if(file_exists($folder)) {
+    foreach(glob("{$folder}/*") as $fisier)
+    {
+        if(is_dir($fisier)) {
+            stergere_continut_folder($fisier);
+        } else {
+            unlink($fisier);
+        }
+    }
+    @rmdir($folder);
+	return true;
+}
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
 // Functie pentru a sterge toate fisierele mai vechi de X secunde dintr-un folder.
 /////////////////////////////////////////////////
 function stergere_continut_folder_mai_vechi_de($folder = null, $minute = null) {
@@ -126,7 +145,8 @@ function stergere_continut_folder_mai_vechi_de($folder = null, $minute = null) {
   if(file_exists($folder)) {
     foreach(glob("{$folder}/*") as $fisier) {
         if(is_dir($fisier)) {
-            stergere_continut_folder($fisier);
+            stergere_continut_folder_mai_vechi_de($fisier, $minute);
+            @rmdir($fisier);
         } else {
           if(file_exists($fisier)) {
             if (time() - filemtime($fisier) >= $secunde) {
@@ -224,6 +244,15 @@ function criptare_js($cod_js=null) {
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
+// Functia care sterge automat cache in cazul in care au fost actualizate setarile.
+/////////////////////////////////////////////////
+$cerere_verificare_modificare = file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web/".id_radio."-".cheie_secreta."-date_actualizate/nespecificat-nespecificat/");
+if($cerere_verificare_modificare == 'datele_au_fost_actualizate_recent') {
+  stergere_continut_folder('cache');
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
 // Definire setari site.
 /////////////////////////////////////////////////
 define('versiune_fisiere_no_cache',obtine_date_remote('versiune_fisiere_no_cache'));
@@ -250,6 +279,7 @@ define('mesaj_dedicatie_trimisa',obtine_date_remote('mesaj_dedicatie_trimisa'));
 define('tip_banner_acp',obtine_date_remote('tip_banner_acp'));
 define('adresa_radio',obtine_date_remote('adresa_radio'));
 define('timp_refresh_ajax',obtine_date_remote('timp_refresh_ajax'));
+define('elemente_per_pagina',obtine_date_remote('elemente_per_pagina'));
 /////////////////////////////////////////////////
 
 /////////////////////////////////////////////////
