@@ -4,7 +4,8 @@
 //    Script Dedicatii PHP by BaxAndrei.Ro     //
 //          https://www.baxandrei.ro           //
 //                                             //
-//      © Toate drepturile sunt rezervate      //
+//                License: MIT.                //
+//        Copyright (c) 2018 BaxAndrei.        //
 //                                             //
 /////////////////////////////////////////////////
 
@@ -15,7 +16,7 @@ define('id_radio','baxandrei');
 // ID-ul este cea ce urmeaza dupa '/radio-' pana la '/' adica baxandrei.
 
 // Cheie secreta
-define('cheie_secreta','');
+define('cheie_secreta','NWQWMWFJOTBMZWFMMZGZOTY5NZA2ODM4ZDVKYZNJYWU');
 // Pentru a obtine cheia secreta trebuie sa te conectezi in panoul de administrare de pe Platforma de Dedicatii.
 // Odata autentificat, trebuie sa apesi pe butonul 'Magazin' din meniul lateral.
 //

@@ -4,7 +4,8 @@
 //    Script Dedicatii PHP by BaxAndrei.Ro     //
 //          https://www.baxandrei.ro           //
 //                                             //
-//      © Toate drepturile sunt rezervate      //
+//                License: MIT.                //
+//        Copyright (c) 2018 BaxAndrei.        //
 //                                             //
 /////////////////////////////////////////////////
 
@@ -169,7 +170,7 @@ function obtine_date_remote($cerere='nespecificat',$utilizator='nespecificat',$p
   $cache_ignora = array('exista_radio','remote_web','status_dedicatii','status_preferinte', 'status_suspendare','mentenanta',
   'verifica_autentificare','obtine_nivel_acces','avatar_utilizator','obtine_dedicatii_totale','obtine_vizite_totale',
   'obtine_ultimele_5_autentificari','obtine_limite_radio','obtine_notificarile','obtine_istoric_versiuni',
-  'obtine_intrebari_frecvente','validare_cheie_secreta', 'element_manager_financiar');
+  'obtine_intrebari_frecvente','validare_cheie_secreta', 'element_manager_financiar', 'obtine_obiecte_magazin');
   if(in_array($cerere, $cache_ignora)) {
     if(!empty($radio) && !empty($cheie_secreta) && !empty($cerere)) {
       return file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web/$radio-$cheie_secreta-$cerere/$utilizator-$parola/");
@@ -373,7 +374,7 @@ if(!empty($_GET['acp'])) {
 function versiune_script() {
   if(file_exists('versiune_script')) {
     $versiune_script = preg_replace('/[^0-9,.]/','',file_get_contents('versiune_script'));
-    $versiune_script = str_replace('...,,.','',$versiune_script);
+    $versiune_script = str_replace('....2018.,,.','',$versiune_script);
     return $versiune_script;
   } else {
     return false;
@@ -511,7 +512,7 @@ function obtine_noutatile() {
     if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
-    return str_replace('xx_ADRESA_SITE_xx',adresa_url_site.'/admin/noutati/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_noutati/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
+    return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/noutati/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_noutati/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
   } else {
     return '';
   }
@@ -534,7 +535,7 @@ function obtine_banuri() {
     if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
-    return str_replace('xx_ADRESA_SITE_xx',adresa_url_site.'/admin/banip/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_banuri/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
+    return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/banip/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_banuri/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
   } else {
     return '';
   }
@@ -549,7 +550,7 @@ function obtine_istoric_conectari() {
     if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
-    return str_replace('xx_ADRESA_SITE_xx',adresa_url_site.'/admin/istoric-conectari/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_istoric_conectari/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
+    return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/istoric-conectari/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_istoric_conectari/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
   } else {
     return '';
   }
@@ -591,7 +592,21 @@ function obtine_istoric_financiar() {
     if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
-    return str_replace('xx_ADRESA_SITE_xx',adresa_url_site.'/admin/situatie-financiara/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_istoric_financiar/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
+    return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/situatie-financiara/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_istoric_financiar/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
+  } else {
+    return '';
+  }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care obtine obiectele din magazin.
+/////////////////////////////////////////////////
+function obtine_obiecte_magazin() {
+  if(conectat()) {
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
+    return obtine_date_remote('obtine_obiecte_magazin', $utilizator, $parola);
   } else {
     return '';
   }

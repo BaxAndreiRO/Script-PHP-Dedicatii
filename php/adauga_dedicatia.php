@@ -1,4 +1,13 @@
 <?php
+/////////////////////////////////////////////////
+//                                             //
+//    Script Dedicatii PHP by BaxAndrei.Ro     //
+//          https://www.baxandrei.ro           //
+//                                             //
+//                License: MIT.                //
+//        Copyright (c) 2018 BaxAndrei.        //
+//                                             //
+/////////////////////////////////////////////////
 
 $date_dedicatie = array(
     'pentru' => $_POST['pentru'],
