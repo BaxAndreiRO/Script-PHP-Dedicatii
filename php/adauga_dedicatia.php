@@ -9,10 +9,13 @@
 //                                             //
 /////////////////////////////////////////////////
 
+if(!empty($_POST['preferinta'])) { $i_preferinta = $_POST['preferinta']; } else { $i_preferinta = ''; }
+
 $date_dedicatie = array(
     'pentru' => $_POST['pentru'],
     'dela' => $_POST['dela'],
     'mesaj' => $_POST['mesaj'],
+    'preferinta' => $i_preferinta,
     'ip' => $_SERVER['REMOTE_ADDR']
 );
 
@@ -28,15 +31,15 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 $raspuns_platforma_cd = curl_exec($curl);
 
 if($raspuns_platforma_cd == "dedicatie_netrimisa") {
-require_once('sabloane/dedicatii/dedicatie_netrimisa.php');
+  require_once('sabloane/dedicatii/dedicatie_netrimisa.php');
 } elseif($raspuns_platforma_cd == "limita_ip_atinsa") {
-require_once('sabloane/dedicatii/limita_ip_atinsa.php');
+  require_once('sabloane/dedicatii/limita_ip_atinsa.php');
 } elseif($raspuns_platforma_cd == "dedicatie_trimisa") {
-require_once('sabloane/dedicatii/dedicatie_trimisa.php');
+  require_once('sabloane/dedicatii/dedicatie_trimisa.php');
 } elseif($raspuns_platforma_cd == "dedicatii_oprite") {
-require_once('sabloane/dedicatii/dedicatii_oprite.php');
+  require_once('sabloane/dedicatii/dedicatii_oprite.php');
 } else {
-require_once('sabloane/dedicatii/eroare_necunoscuta.php');
+  require_once('sabloane/dedicatii/eroare_necunoscuta.php');
 }
 
 curl_close($curl);

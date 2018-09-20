@@ -358,13 +358,17 @@ function obtine_avatar_utilizator() {
 // Functia care te redirectioneaza catre index daca esti conectat sau catre conectare daca nu esti conectat.
 /////////////////////////////////////////////////
 if(!empty($_GET['acp'])) {
-  $pagini_fara_conectare = array('conectare');
+  $pagini_fara_conectare = array('conectare','parola-pierduta');
   if(!in_array($_GET['pagina'], $pagini_fara_conectare) && !conectat()) {
     header('Location: '.adresa_url_site.'/admin/conectare/');
     setcookie('redirectionare_dupa_conectare', $_GET['pagina'], time() + (10), "/");
   } elseif(in_array($_GET['pagina'], $pagini_fara_conectare) && conectat()) {
     header('Location: '.adresa_url_site.'/admin/acasa/');
-    setcookie('deja_autentificat', '1', time() + (5), "/");
+    if($_GET['pagina'] == 'conectare') {
+      setcookie('deja_autentificat', '1', time() + (5), "/");
+    } elseif($_GET['pagina'] == 'parola-pierduta') {
+      setcookie('deja_autentificat2', '1', time() + (5), "/");
+    }
   }
 }
 /////////////////////////////////////////////////
@@ -375,7 +379,7 @@ if(!empty($_GET['acp'])) {
 function versiune_script() {
   if(file_exists('versiune_script')) {
     $versiune_script = preg_replace('/[^0-9,.]/','',file_get_contents('versiune_script'));
-    $versiune_script = str_replace('....2018.,,.','',$versiune_script);
+    $versiune_script = str_replace('....2018.','',$versiune_script);
     return $versiune_script;
   } else {
     return false;
@@ -484,7 +488,7 @@ function obtine_notificarile() {
   if(conectat()) {
     if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
-    return obtine_date_remote('obtine_notificarile', $utilizator, $parola);
+    return str_replace('xx_ADRESA_SITE_xx',adresa_url_site.'/admin/',obtine_date_remote('obtine_notificarile', $utilizator, $parola));
   } else {
     return '';
   }
@@ -639,6 +643,28 @@ function obtine_formular_utilizator_nou() {
     return obtine_date_remote('obtine_formular_utilizator_nou', $utilizator, $parola);
   } else {
     return '';
+  }
+}
+/////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care verifica daca codul pentru resetarea parolei este valid.
+/////////////////////////////////////////////////
+function verificare_cod_resetare_parola($cod=null) {
+  if(!empty($cod)) {
+    $date_cerere = array(
+        'cod_resetare' => $cod,
+        'adresa_site' => adresa_url_site
+    );
+    $date_cerere_prelucrate = http_build_query($date_cerere, '', '&');
+    $verifica_cod = "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_parola_pierduta/".id_radio."-".cheie_secreta."-verificare_cod_resetare/";
+    $curl = curl_init($verifica_cod);
+    curl_setopt($curl, CURLOPT_POST, 1);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $date_cerere_prelucrate);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $raspuns_cerere_validare_cod_resetare = curl_exec($curl);
+    curl_close($curl);
+    return $raspuns_cerere_validare_cod_resetare;
   }
 }
 /////////////////////////////////////////////////

@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="https://www.cdn.baxandrei.ro/toastr/toastr.min.css">
 <script src="https://www.cdn.baxandrei.ro/toastr/toastr.min.js"></script>
 <script src="https://www.cdn.baxandrei.ro/javascript-md5/md5.min.js"></script>
+<script src="https://www.cdn.baxandrei.ro/js-base64/base64.min.js"></script>
 <script src="https://www.cdn.baxandrei.ro/bootstrap/js/bootstrap.js"></script>
 <script src="https://www.main.baxandrei.ro/dedicatii-v2/public/js/baxandrei.ro.js?<?php echo versiune_fisiere_no_cache; ?>"></script>
 <script>toastr.options = {"closeButton": true,"debug": false,"newestOnTop": true,"progressBar": true,"positionClass": "toast-top-right","preventDuplicates": true,"onclick": null,"showDuration": "300","hideDuration": "1000","timeOut": "3000","extendedTimeOut": "1000","showEasing": "swing","hideEasing": "linear","showMethod": "fadeIn","hideMethod": "fadeOut"}</script>
@@ -33,4 +34,3 @@
         <center><img src="<?php echo imagine_logo; ?>" class="img-responsive no-login-<?php echo $_GET['pagina']; ?>" /></center>
         <br>
         <br>
-        
