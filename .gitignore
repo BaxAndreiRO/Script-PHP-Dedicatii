@@ -1,3 +1,2 @@
 cache/**
 !cache/.htaccess
-php/setari.php
