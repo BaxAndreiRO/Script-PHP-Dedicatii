@@ -10,13 +10,13 @@
 /////////////////////////////////////////////////
 
 // Ientificator unic radio
-define('id_radio','baxandrei');
+define('id_radio','         ');
 // Acesta se obtine foarte simplu din adresa de pe Platforma de Dedicatii.
 // De exemplu, avem adresa radioului: https://www.main.baxandrei.ro/dedicatii-v2/radio-baxandrei/
 // ID-ul este cea ce urmeaza dupa '/radio-' pana la '/' adica baxandrei.
 
 // Cheie secreta
-define('cheie_secreta','NWQWMWFJOTBMZWFMMZGZOTY5NZA2ODM4ZDVKYZNJYWU');
+define('cheie_secreta','         ');
 // Pentru a obtine cheia secreta trebuie sa te conectezi in panoul de administrare de pe Platforma de Dedicatii.
 // Odata autentificat, trebuie sa apesi pe butonul 'Magazin' din meniul lateral.
 //
@@ -26,7 +26,7 @@ define('cheie_secreta','NWQWMWFJOTBMZWFMMZGZOTY5NZA2ODM4ZDVKYZNJYWU');
 // Daca sub imagine scrie 'inactiv' inseamna ca nu aveti activa inca aceasta functie si va trebui sa o achizitionati, dupa care trebuie sa faceti ceea ce scrie mai sus.
 
 // Adresa URL site
-define('adresa_url_site','http://localhost:1998/Script-PHP-Dedicatii');
+define('adresa_url_site','         ');
 // Adresa URL catre site-ul unde este instalat scriptul.
 // De exemplu: https://www.dedicatii.baxandrei.ro sau http://radio.baxandrei.ro/dedicatii
 // Atentie: Adresa nu trebuie sa se termine cu "/" la sfarsit!
