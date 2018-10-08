@@ -166,7 +166,7 @@ function stergere_continut_folder_mai_vechi_de($folder = null, $minute = null) {
 function obtine_date_remote($cerere='nespecificat',$utilizator='nespecificat',$parola='nespecificat') {
   if(!defined('id_radio')) { $radio = null; } else { $radio = id_radio; }
   if(!defined('cheie_secreta')) { $cheie_secreta = null; } else { $cheie_secreta = cheie_secreta; }
-  stergere_continut_folder_mai_vechi_de('cache', timp_sergere_cache);
+  stergere_continut_folder_mai_vechi_de('cache', timp_stergere_cache);
   $cache_ignora = array('exista_radio','remote_web','status_dedicatii','status_preferinte', 'status_suspendare','mentenanta',
   'verifica_autentificare','obtine_nivel_acces','avatar_utilizator','obtine_dedicatii_totale','obtine_vizite_totale',
   'obtine_ultimele_5_autentificari','obtine_limite_radio','obtine_notificarile','obtine_istoric_versiuni',

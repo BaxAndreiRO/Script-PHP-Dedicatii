@@ -37,7 +37,7 @@ define('activare_ajax','1');
 // 0 = oprit, 1 = pornit
 
 // Sterge fisierele mai vechi de X minute.
-define('timp_sergere_cache','60');
+define('timp_stergere_cache','60');
 // Se foloseste pentru fisierele cache.
 // Daca sunteti sigur ca nu veti mai modifica setarile pe site puteti seta un numar mai mare.
 // Daca au fost modificare recent setarile din platforma, iar aici nu apar modificarile, stergeti continulul folderului cache, mai putin fisierul .htaccess
