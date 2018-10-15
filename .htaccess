@@ -16,3 +16,6 @@ RewriteRule ^admin/banip/([^/]+)$ index.php?acp=1&pagina=banip&ip_ban=$1
 
 RewriteRule ^admin/parola-pierduta/([^/]+)/$ index.php?acp=1&pagina=parola-pierduta&cod_resetare=$1
 RewriteRule ^admin/parola-pierduta/([^/]+)$ index.php?acp=1&pagina=parola-pierduta&cod_resetare=$1
+
+RewriteRule ^widget/status_dj/([^/]+)/$ https://www.main.baxandrei.ro/dedicatii-v2/widget/status_dj/$1
+RewriteRule ^widget/status_dj/([^/]+)$ https://www.main.baxandrei.ro/dedicatii-v2/widget/status_dj/$1
