@@ -16,13 +16,26 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Cod pentru afisare DJ curent si status dedicatii</h3>
+    <h3 class="panel-title">Cod pentru afisare DJ curent si status dedicatii (fara avatar)</h3>
   </div>
   <div class="panel-body">
 
-    <pre style="margin:0;"><code style="margin:0;">&lt;!-- Inceput Cod pentru afisare DJ curent si status dedicatii --&gt;
-&lt;iframe id=&quot;bx-widget-1&quot; src=&quot;<?php echo adresa_url_site; ?>/widget/status_dj/<?php echo id_radio; ?>&stream=IP_RADIO:PORT_RADIO&quot; width=&quot;300px&quot; height=&quot;120px&quot; style=&quot;margin:0; border:none; overflow:hidden;&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;
-&lt;!-- Sfarsit Cod pentru afisare DJ curent si status dedicatii --&gt;</code></pre>
+    <pre style="margin:0;"><code style="margin:0;">&lt;!-- Inceput Cod pentru afisare DJ curent si status dedicatii (fara avatar) --&gt;
+&lt;iframe id=&quot;bx-widget-1&quot; src=&quot;<?php echo adresa_url_site; ?>/widget/status_dj/<?php echo id_radio; ?>&stream=IP_RADIO:PORT_RADIO&quot; width=&quot;300px&quot; height=&quot;125px&quot; style=&quot;margin:0; border:none; overflow:hidden;&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;
+&lt;!-- Sfarsit Cod pentru afisare DJ curent si status dedicatii (fara avatar) --&gt;</code></pre>
+
+  </div>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Cod pentru afisare DJ curent si status dedicatii (cu avatar)</h3>
+  </div>
+  <div class="panel-body">
+
+    <pre style="margin:0;"><code style="margin:0;">&lt;!-- Inceput Cod pentru afisare DJ curent si status dedicatii (cu avatar) --&gt;
+&lt;iframe id=&quot;bx-widget-2&quot; src=&quot;<?php echo adresa_url_site; ?>/widget/status_dj_cu_avatar/<?php echo id_radio; ?>&stream=IP_RADIO:PORT_RADIO&quot; width=&quot;300px&quot; height=&quot;350px&quot; style=&quot;margin:0; border:none; overflow:hidden;&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;
+&lt;!-- Sfarsit Cod pentru afisare DJ curent si status dedicatii (cu avatar) --&gt;</code></pre>
 
   </div>
 </div>
