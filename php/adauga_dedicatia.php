@@ -39,7 +39,30 @@ if($raspuns_platforma_cd == "dedicatie_netrimisa") {
 } elseif($raspuns_platforma_cd == "dedicatii_oprite") {
   require_once('sabloane/dedicatii/dedicatii_oprite.php');
 } else {
-  require_once('sabloane/dedicatii/eroare_necunoscuta.php');
+  $date_dedicatie_prelucrate = http_build_query($date_dedicatie);
+
+  $date_dedicatie_prelucrate = array('http' =>
+      array(
+          'method'  => 'POST',
+          'header'  => 'Content-type: application/x-www-form-urlencoded',
+          'content' => $date_dedicatie_prelucrate
+      )
+  );
+  $date_dedicatie_prelucrate  = stream_context_create($date_dedicatie_prelucrate);
+
+  $raspuns_platforma_cd = file_get_contents($adauga_dedicatia, false, $date_dedicatie_prelucrate);
+
+  if($raspuns_platforma_cd == "dedicatie_netrimisa") {
+    require_once('sabloane/dedicatii/dedicatie_netrimisa.php');
+  } elseif($raspuns_platforma_cd == "limita_ip_atinsa") {
+    require_once('sabloane/dedicatii/limita_ip_atinsa.php');
+  } elseif($raspuns_platforma_cd == "dedicatie_trimisa") {
+    require_once('sabloane/dedicatii/dedicatie_trimisa.php');
+  } elseif($raspuns_platforma_cd == "dedicatii_oprite") {
+    require_once('sabloane/dedicatii/dedicatii_oprite.php');
+  } else {
+    require_once('sabloane/dedicatii/eroare_necunoscuta.php');
+  }
 }
 
 curl_close($curl);
