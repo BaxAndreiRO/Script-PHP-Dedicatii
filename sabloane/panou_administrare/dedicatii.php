@@ -113,6 +113,10 @@ window.setInterval(function(){
 			alert("Se pare ca a aparut o problema suspecta! Pagina se va reincarca...");
 			location.reload();
 		}
+		if($.cookie("dedicatii_parola") == undefined || $.cookie("dedicatii_parola") == "" || $.cookie("dedicatii_utilizator") == undefined || $.cookie("dedicatii_utilizator") == "") {
+			alert("Se pare ca a aparut o problema suspecta! Pagina se va reincarca...");
+			location.reload();
+		}
 	});
 
 }, '. timp_refresh_ajax * 1000 .');
