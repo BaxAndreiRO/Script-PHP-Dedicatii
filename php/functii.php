@@ -674,6 +674,6 @@ function verificare_cod_resetare_parola($cod=null) {
 /////////////////////////////////////////////////
 if(!empty($_GET['widget']) && empty($_GET['pagina'])) {
   if(!empty($_GET['stream'])) { $stream_widget = $_GET['stream']; } else { $stream_widget = ''; }
-  if(!empty($_GET['mesaj_fara_dj'])) { $mesaj_fara_dj_widget = $_GET['mesaj_fara_dj']; } else { $mesaj_fara_dj_widget = ''; }
+  if(!empty($_GET['mesaj_fara_dj'])) { $mesaj_fara_dj_widget = str_replace(' ','%20',$_GET['mesaj_fara_dj']); } else { $mesaj_fara_dj_widget = ''; }
   exit(str_replace('xx_ADRESA_SITE_WIDGET_xx',adresa_url_site."/widget/".$_GET['widget']."&stream=$stream_widget&mesaj_fara_dj=$mesaj_fara_dj_widget",file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_wigeturi/".id_radio."-".cheie_secreta."/".$_GET['widget']."&stream=$stream_widget&mesaj_fara_dj=$mesaj_fara_dj_widget")));
 }
