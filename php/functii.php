@@ -239,7 +239,7 @@ if(obtine_date_remote('status_suspendare') != "radio_activ") {
 // Functia pentru criptarea javascript.
 /////////////////////////////////////////////////
 function criptare_js($cod_js=null) {
-  require_once('resurse-php/php-packer/Packer.php');
+  require_once('resurse-php/php-js-packer/Packer.php');
   $packer = new Tholu\Packer\Packer($cod_js, 'Normal', true, false, true);
   return "// BaxAndrei.Ro Security V1 \r\n".str_replace("\n","",$packer->pack())."\n";
 }
@@ -668,3 +668,12 @@ function verificare_cod_resetare_parola($cod=null) {
   }
 }
 /////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+// Functia care obtine widget-urile.
+/////////////////////////////////////////////////
+if(!empty($_GET['widget']) && empty($_GET['pagina'])) {
+  if(!empty($_GET['stream'])) { $stream_widget = $_GET['stream']; } else { $stream_widget = ''; }
+  if(!empty($_GET['mesaj_fara_dj'])) { $mesaj_fara_dj_widget = $_GET['mesaj_fara_dj']; } else { $mesaj_fara_dj_widget = ''; }
+  exit(str_replace('xx_ADRESA_SITE_WIDGET_xx',adresa_url_site."/widget/".$_GET['widget']."&stream=$stream_widget&mesaj_fara_dj=$mesaj_fara_dj_widget",file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_wigeturi/".id_radio."-".cheie_secreta."/".$_GET['widget']."&stream=$stream_widget&mesaj_fara_dj=$mesaj_fara_dj_widget")));
+}

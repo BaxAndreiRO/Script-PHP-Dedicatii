@@ -21,7 +21,7 @@
   <div class="panel-body">
 
     <pre style="margin:0;"><code style="margin:0;">&lt;!-- Inceput Cod pentru afisare DJ curent si status dedicatii (fara avatar) --&gt;
-&lt;iframe id=&quot;bx-widget-1&quot; src=&quot;<?php echo adresa_url_site; ?>/widget/status_dj/<?php echo id_radio; ?>&stream=IP_RADIO:PORT_RADIO&mesaj_fara_dj=MESAJ&quot; width=&quot;300px&quot; height=&quot;125px&quot; style=&quot;margin:0; border:none; overflow:hidden;&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;
+&lt;iframe id=&quot;bx-widget-1&quot; src=&quot;<?php echo adresa_url_site; ?>/widget/status_dj&stream=IP_RADIO:PORT_RADIO&mesaj_fara_dj=MESAJ&quot; width=&quot;300px&quot; height=&quot;125px&quot; style=&quot;margin:0; border:none; overflow:hidden;&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;
 &lt;!-- Sfarsit Cod pentru afisare DJ curent si status dedicatii (fara avatar) --&gt;</code></pre>
 
   </div>
@@ -34,7 +34,7 @@
   <div class="panel-body">
 
     <pre style="margin:0;"><code style="margin:0;">&lt;!-- Inceput Cod pentru afisare DJ curent si status dedicatii (cu avatar) --&gt;
-&lt;iframe id=&quot;bx-widget-2&quot; src=&quot;<?php echo adresa_url_site; ?>/widget/status_dj_cu_avatar/<?php echo id_radio; ?>&stream=IP_RADIO:PORT_RADIO&mesaj_fara_dj=MESAJ&quot; width=&quot;300px&quot; height=&quot;350px&quot; style=&quot;margin:0; border:none; overflow:hidden;&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;
+&lt;iframe id=&quot;bx-widget-2&quot; src=&quot;<?php echo adresa_url_site; ?>/widget/status_dj_cu_avatar&stream=IP_RADIO:PORT_RADIO&mesaj_fara_dj=MESAJ&quot; width=&quot;300px&quot; height=&quot;350px&quot; style=&quot;margin:0; border:none; overflow:hidden;&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;
 &lt;!-- Sfarsit Cod pentru afisare DJ curent si status dedicatii (cu avatar) --&gt;</code></pre>
 
   </div>
