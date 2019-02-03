@@ -315,7 +315,7 @@ function adresa_curenta() {
 // Functia ce verifica daca utilizatorul este conectat sau nu.
 /////////////////////////////////////////////////
 function conectat() {
-  if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+  if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
   if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
   if(obtine_date_remote('verifica_autentificare', $utilizator, $parola) == 1) {
     return true;
@@ -330,7 +330,7 @@ function conectat() {
 /////////////////////////////////////////////////
 function obtine_nivel_acces() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     return obtine_date_remote('obtine_nivel_acces', $utilizator, $parola);
   } else {
@@ -345,7 +345,7 @@ function obtine_nivel_acces() {
 /////////////////////////////////////////////////
 function obtine_avatar_utilizator() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     return obtine_date_remote('avatar_utilizator', $utilizator, $parola);
   } else {
@@ -411,7 +411,7 @@ if(!empty($_POST['trimite_cerere_deconectare'])) {
 /////////////////////////////////////////////////
 function obtine_dedicatii_totale() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     return obtine_date_remote('obtine_dedicatii_totale', $utilizator, $parola);
   } else {
@@ -425,7 +425,7 @@ function obtine_dedicatii_totale() {
 /////////////////////////////////////////////////
 function obtine_vizite_totale() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     return obtine_date_remote('obtine_vizite_totale', $utilizator, $parola);
   } else {
@@ -458,7 +458,7 @@ function nivel_acces() {
 /////////////////////////////////////////////////
 function obtine_ultimele_5_autentificari() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     return obtine_date_remote('obtine_ultimele_5_autentificari', $utilizator, $parola);
   } else {
@@ -472,7 +472,7 @@ function obtine_ultimele_5_autentificari() {
 /////////////////////////////////////////////////
 function obtine_limite_radio() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     return obtine_date_remote('obtine_limite_radio', $utilizator, $parola);
   } else {
@@ -486,7 +486,7 @@ function obtine_limite_radio() {
 /////////////////////////////////////////////////
 function obtine_notificarile() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     return str_replace('xx_ADRESA_SITE_xx',adresa_url_site.'/admin/',obtine_date_remote('obtine_notificarile', $utilizator, $parola));
   } else {
@@ -500,7 +500,7 @@ function obtine_notificarile() {
 /////////////////////////////////////////////////
 function obtine_istoric_versiuni() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     return obtine_date_remote('obtine_istoric_versiuni', $utilizator, $parola);
   } else {
@@ -514,7 +514,7 @@ function obtine_istoric_versiuni() {
 /////////////////////////////////////////////////
 function obtine_noutatile() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
     return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/noutati/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_noutati/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
@@ -537,7 +537,7 @@ function obtine_intrebari_frecvente() {
 /////////////////////////////////////////////////
 function obtine_banuri() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
     return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/banip/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_banuri/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
@@ -552,7 +552,7 @@ function obtine_banuri() {
 /////////////////////////////////////////////////
 function obtine_istoric_conectari() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
     return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/istoric-conectari/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_istoric_conectari/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
@@ -580,7 +580,7 @@ if(!empty($_GET['pagina']) && !empty($_GET['acp']) && !empty($_GET['ip_ban'])) {
 /////////////////////////////////////////////////
 function manager_financiar() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     return obtine_date_remote('element_manager_financiar', $utilizator, $parola);
   } else {
@@ -594,7 +594,7 @@ function manager_financiar() {
 /////////////////////////////////////////////////
 function obtine_istoric_financiar() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
     return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/situatie-financiara/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_istoric_financiar/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
@@ -609,7 +609,7 @@ function obtine_istoric_financiar() {
 /////////////////////////////////////////////////
 function obtine_obiecte_magazin() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     return obtine_date_remote('obtine_obiecte_magazin', $utilizator, $parola);
   } else {
@@ -623,7 +623,7 @@ function obtine_obiecte_magazin() {
 /////////////////////////////////////////////////
 function obtine_utilizatori() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
     return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/conturi-utilizatori/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_utilizatori/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
@@ -638,7 +638,7 @@ function obtine_utilizatori() {
 /////////////////////////////////////////////////
 function obtine_formular_utilizator_nou() {
   if(conectat()) {
-    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = $_COOKIE['dedicatii_utilizator']; } else { $utilizator = 'nespecificat'; }
+    if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     return obtine_date_remote('obtine_formular_utilizator_nou', $utilizator, $parola);
   } else {
