@@ -21,7 +21,7 @@ ___
 # Hello everyone!
 This **PHP script** depends on **an account** on the [**Dedications Platform**](https://main.baxandrei.ro/dedicatii-v2/) to **work**!
 
-I took this measure to make it completely useless any attempt to pirate this script!
+I took this measure to make it completely useless against any attempt to pirate this script!
 
 ## About the script
 
