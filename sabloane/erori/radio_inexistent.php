@@ -29,7 +29,7 @@
               Va rugam sa verificati fisierul <kbd>/php/setari.php</kbd> si sa setati corect <kbd>id_radio</kbd> pentru ca scriptul sa functioneze. Daca datele sunt corecte, este posibil ca radioul specificat sa nu existe.
               <br>
               <br>
-              Daca aveti nevoie de ajutor puteti vizita pagina noastra de <a href="https://github.com/BaxAndreiRO/Script-PHP-Dedicatii" target="_blank">GitHub</a> sau sa folositi <a href="https://www.baxandrei.ro/contact/?departament=Departament%20pentru%20Probleme" target="_blank">formularul nostru de contact</a>. De asemenea, in cazul in care nu aveti un radio inregistrat pe platforma noastra, o puteti face vizitand <a href="https://www.main.baxandrei.ro/dedicatii-v2/" target="_blank">aceasta pagina</a>.
+              Daca aveti nevoie de ajutor puteti vizita pagina noastra de <a href="https://www.git.baxandrei.ro/BaxAndrei.Ro/Script-PHP-Dedicatii/" target="_blank">GitHub</a> sau sa folositi <a href="https://www.baxandrei.ro/contact/?departament=Departament%20pentru%20Probleme" target="_blank">formularul nostru de contact</a>. De asemenea, in cazul in care nu aveti un radio inregistrat pe platforma noastra, o puteti face vizitand <a href="https://www.main.baxandrei.ro/dedicatii-v2/" target="_blank">aceasta pagina</a>.
             </div>
           </div>
         </div>
