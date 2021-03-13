@@ -174,14 +174,14 @@ function obtine_date_remote($cerere='nespecificat',$utilizator='nespecificat',$p
   'obtine_formular_utilizator_nou');
   if(in_array($cerere, $cache_ignora)) {
     if(!empty($radio) && !empty($cheie_secreta) && !empty($cerere)) {
-      return file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web/$radio-$cheie_secreta-$cerere/$utilizator-$parola/");
+      return file_get_contents("https://main.baxandrei.ro/dedicatii-v2/remote-web/$radio-$cheie_secreta-$cerere/$utilizator-$parola/");
     } else {
       return "Eroare! Verificati daca radioul, cheia secreta si cererea sunt specificate.";
     }
   } else {
     if(!file_exists('cache/'.$cerere)) {
       if(!empty($radio) && !empty($cerere)) {
-        $date_cerute = file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web/$radio-$cheie_secreta-$cerere/$utilizator-$parola/");
+        $date_cerute = file_get_contents("https://main.baxandrei.ro/dedicatii-v2/remote-web/$radio-$cheie_secreta-$cerere/$utilizator-$parola/");
         touch('cache/'.$cerere);
         file_put_contents('cache/'.$cerere, $date_cerute);
         return $date_cerute;
@@ -248,7 +248,7 @@ function criptare_js($cod_js=null) {
 /////////////////////////////////////////////////
 // Functia care sterge automat cache in cazul in care au fost actualizate setarile.
 /////////////////////////////////////////////////
-$cerere_verificare_modificare = file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web/".id_radio."-".cheie_secreta."-date_actualizate/nespecificat-nespecificat/");
+$cerere_verificare_modificare = file_get_contents("https://main.baxandrei.ro/dedicatii-v2/remote-web/".id_radio."-".cheie_secreta."-date_actualizate/nespecificat-nespecificat/");
 if($cerere_verificare_modificare == 'datele_au_fost_actualizate_recent') {
   stergere_continut_folder('cache');
 }
@@ -289,7 +289,7 @@ define('elemente_per_pagina',obtine_date_remote('elemente_per_pagina'));
 /////////////////////////////////////////////////
 function banat($ip = null) {
   if(!empty($ip)) {
-    $status_ban = file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_ban/".id_radio."-".cheie_secreta."-$ip/");
+    $status_ban = file_get_contents("https://main.baxandrei.ro/dedicatii-v2/remote-web_ban/".id_radio."-".cheie_secreta."-$ip/");
     if($status_ban != "utilizator_nebanat" && empty($_GET['acp'])) {
       $mesaj_ban = $status_ban;
       exit(require_once('sabloane/altele/ip_banat.php'));
@@ -392,7 +392,7 @@ function versiune_script() {
 /////////////////////////////////////////////////
 if(!empty($_POST['trimite_cerere_deconectare'])) {
   // trimite confirmare decoenctare
-  file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web/".id_radio."-".cheie_secreta."-confirmare_deconectare/$utilizator-$parola/");
+  file_get_contents("https://main.baxandrei.ro/dedicatii-v2/remote-web/".id_radio."-".cheie_secreta."-confirmare_deconectare/$utilizator-$parola/");
   if (isset($_SERVER['HTTP_COOKIE'])) {
     $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
     foreach($cookies as $cookie) {
@@ -517,7 +517,7 @@ function obtine_noutatile() {
     if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
-    return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/noutati/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_noutati/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
+    return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/noutati/',file_get_contents("https://main.baxandrei.ro/dedicatii-v2/remote-web_noutati/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
   } else {
     return '';
   }
@@ -540,7 +540,7 @@ function obtine_banuri() {
     if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
-    return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/banip/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_banuri/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
+    return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/banip/',file_get_contents("https://main.baxandrei.ro/dedicatii-v2/remote-web_banuri/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
   } else {
     return '';
   }
@@ -555,7 +555,7 @@ function obtine_istoric_conectari() {
     if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
-    return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/istoric-conectari/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_istoric_conectari/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
+    return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/istoric-conectari/',file_get_contents("https://main.baxandrei.ro/dedicatii-v2/remote-web_istoric_conectari/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
   } else {
     return '';
   }
@@ -597,7 +597,7 @@ function obtine_istoric_financiar() {
     if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
-    return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/situatie-financiara/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_istoric_financiar/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
+    return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/situatie-financiara/',file_get_contents("https://main.baxandrei.ro/dedicatii-v2/remote-web_istoric_financiar/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
   } else {
     return '';
   }
@@ -626,7 +626,7 @@ function obtine_utilizatori() {
     if(!empty($_COOKIE['dedicatii_utilizator'])) { $utilizator = str_replace(' ','%20',$_COOKIE['dedicatii_utilizator']); } else { $utilizator = 'nespecificat'; }
     if(!empty($_COOKIE['dedicatii_parola'])) { $parola = $_COOKIE['dedicatii_parola']; } else { $parola = 'nespecificat'; }
     if(!empty($_GET['nr-pagina'])) { $pagina_ceruta = $_GET['nr-pagina']; } else { $pagina_ceruta = 1; }
-    return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/conturi-utilizatori/',file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_utilizatori/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
+    return str_replace('xx_ADRESA_SITE_PAGINARE_xx',adresa_url_site.'/admin/conturi-utilizatori/',file_get_contents("https://main.baxandrei.ro/dedicatii-v2/remote-web_utilizatori/".id_radio."-".cheie_secreta."/$utilizator-$parola/$pagina_ceruta"));
   } else {
     return '';
   }
@@ -657,7 +657,7 @@ function verificare_cod_resetare_parola($cod=null) {
         'adresa_site' => adresa_url_site
     );
     $date_cerere_prelucrate = http_build_query($date_cerere, '', '&');
-    $verifica_cod = "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_parola_pierduta/".id_radio."-".cheie_secreta."-verificare_cod_resetare/";
+    $verifica_cod = "https://main.baxandrei.ro/dedicatii-v2/remote-web_parola_pierduta/".id_radio."-".cheie_secreta."-verificare_cod_resetare/";
     $curl = curl_init($verifica_cod);
     curl_setopt($curl, CURLOPT_POST, 1);
     curl_setopt($curl, CURLOPT_POSTFIELDS, $date_cerere_prelucrate);
@@ -675,5 +675,5 @@ function verificare_cod_resetare_parola($cod=null) {
 if(!empty($_GET['widget']) && empty($_GET['pagina'])) {
   if(!empty($_GET['stream'])) { $stream_widget = $_GET['stream']; } else { $stream_widget = ''; }
   if(!empty($_GET['mesaj_fara_dj'])) { $mesaj_fara_dj_widget = str_replace(' ','%20',$_GET['mesaj_fara_dj']); } else { $mesaj_fara_dj_widget = ''; }
-  exit(str_replace('xx_ADRESA_SITE_WIDGET_xx',adresa_url_site."/widget/".$_GET['widget']."&stream=$stream_widget&mesaj_fara_dj=$mesaj_fara_dj_widget",file_get_contents("https://www.main.baxandrei.ro/dedicatii-v2/remote-web_wigeturi/".id_radio."-".cheie_secreta."/".$_GET['widget']."&stream=$stream_widget&mesaj_fara_dj=$mesaj_fara_dj_widget")));
+  exit(str_replace('xx_ADRESA_SITE_WIDGET_xx',adresa_url_site."/widget/".$_GET['widget']."&stream=$stream_widget&mesaj_fara_dj=$mesaj_fara_dj_widget",file_get_contents("https://main.baxandrei.ro/dedicatii-v2/remote-web_wigeturi/".id_radio."-".cheie_secreta."/".$_GET['widget']."&stream=$stream_widget&mesaj_fara_dj=$mesaj_fara_dj_widget")));
 }
