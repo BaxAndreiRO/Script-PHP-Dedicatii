@@ -104,7 +104,7 @@ $(document).ready(function(){
 										nume: "'.$utilizator.'",
 										parola: md5($("#parola_veche").val())
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_actualizare_parola/'.id_radio.'-'.cheie_secreta.'",
+                url: "https://main.baxandrei.ro/dedicatii-v2/remote-web_actualizare_parola/'.id_radio.'-'.cheie_secreta.'",
                 dataType: "json",
                 success: function (result) {
 					if (result.raspuns == "parola_schimbata") {
@@ -235,7 +235,7 @@ $(document).ready(function(){
 										nume: "'.$utilizator.'",
 										parola: "'.$parola.'"
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_actualizare_avatar/'.id_radio.'-'.cheie_secreta.'",
+                url: "https://main.baxandrei.ro/dedicatii-v2/remote-web_actualizare_avatar/'.id_radio.'-'.cheie_secreta.'",
                 dataType: "text",
                 success: function (result) {
 					if (result == "avatar_actualizat") {

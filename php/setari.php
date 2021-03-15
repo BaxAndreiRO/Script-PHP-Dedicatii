@@ -12,7 +12,7 @@
 // Ientificator unic radio
 define('id_radio','         ');
 // Acesta se obtine foarte simplu din adresa de pe Platforma de Dedicatii.
-// De exemplu, avem adresa radioului: https://www.main.baxandrei.ro/dedicatii-v2/radio-baxandrei/
+// De exemplu, avem adresa radioului: https://main.baxandrei.ro/dedicatii-v2/radio-baxandrei/
 // ID-ul este cea ce urmeaza dupa '/radio-' pana la '/' adica baxandrei.
 
 // Cheie secreta

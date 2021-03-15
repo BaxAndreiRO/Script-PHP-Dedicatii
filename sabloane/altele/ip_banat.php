@@ -10,11 +10,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://www.cdn.baxandrei.ro/bootstrap/js/bootstrap.js"></script>
-<link rel="stylesheet" href="https://www.cdn.baxandrei.ro/bootstrap/css/lumen.css">
-<link rel="stylesheet" href="https://www.main.baxandrei.ro/dedicatii-v2/public/css/baxandrei.ro.css?<?php echo versiune_fisiere_no_cache; ?>">
-<link rel="stylesheet" href="https://www.main.baxandrei.ro/dedicatii-v2/css-personalizat/<?php echo id_radio; ?>.css">
-<script src="https://www.main.baxandrei.ro/dedicatii-v2/public/js/baxandrei.ro.js?<?php echo versiune_fisiere_no_cache; ?>"></script>
+<script src="https://cdn.baxandrei.ro/bootstrap/js/bootstrap.js"></script>
+<link rel="stylesheet" href="https://cdn.baxandrei.ro/bootstrap/css/lumen.css">
+<link rel="stylesheet" href="https://main.baxandrei.ro/dedicatii-v2/public/css/baxandrei.ro.css?<?php echo versiune_fisiere_no_cache; ?>">
+<link rel="stylesheet" href="https://main.baxandrei.ro/dedicatii-v2/css-personalizat/<?php echo id_radio; ?>.css">
+<script src="https://main.baxandrei.ro/dedicatii-v2/public/js/baxandrei.ro.js?<?php echo versiune_fisiere_no_cache; ?>"></script>
 <?php if(tip_fundal == 2) { ?><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
 <script>jQuery(document).ready(function(){$.backstretch("<?php echo imagine_fundal; ?>");});</script>
 <?php } ?>

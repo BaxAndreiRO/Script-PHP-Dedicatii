@@ -7,12 +7,12 @@
 <meta property="og:image" content="https://bxls.cf/ogimagededicatiiv2" />
 <meta name="description" content="Aceasta platforma a fost creata special pentru detinatorii de radio care nu au un script de dedicatii sau care nu au posibilitatea de a il folosi pe site-ul lor. Acest script este foarte bine optimizat si securizat, astfel, orice tip de problema este indepartata mai usor pentru ca scriptul primeste actualizari regulate si optimizari.">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="icon" href="https://www.cdn.baxandrei.ro/imagini/favicon.ico">
+<link rel="icon" href="https://cdn.baxandrei.ro/imagini/favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.cdn.baxandrei.ro/bootstrap/css/lumen.css">
+<link rel="stylesheet" href="https://cdn.baxandrei.ro/bootstrap/css/lumen.css">
 <link rel="stylesheet" href="<?php echo adresa_site; ?>public/css/baxandrei.ro.css?<?php echo versiune_fisiere_no_cache; ?>">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://www.cdn.baxandrei.ro/bootstrap/js/bootstrap.js"></script>
+<script src="https://cdn.baxandrei.ro/bootstrap/js/bootstrap.js"></script>
 <script src="<?php echo adresa_site; ?>public/js/baxandrei.ro.js?<?php echo versiune_fisiere_no_cache; ?>"></script>
 </head>
 <body>

@@ -10,11 +10,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://www.cdn.baxandrei.ro/bootstrap/js/bootstrap.js"></script>
-<link rel="stylesheet" href="https://www.cdn.baxandrei.ro/bootstrap/css/lumen.css">
-<link rel="stylesheet" href="https://www.main.baxandrei.ro/dedicatii-v2/public/css/baxandrei.ro.css?<?php echo versiune_fisiere_no_cache; ?>">
-<link rel="stylesheet" href="https://www.main.baxandrei.ro/dedicatii-v2/css-personalizat/<?php echo id_radio; ?>.css">
-<script src="https://www.main.baxandrei.ro/dedicatii-v2/public/js/baxandrei.ro.js?<?php echo versiune_fisiere_no_cache; ?>"></script>
+<script src="https://cdn.baxandrei.ro/bootstrap/js/bootstrap.js"></script>
+<link rel="stylesheet" href="https://cdn.baxandrei.ro/bootstrap/css/lumen.css">
+<link rel="stylesheet" href="https://main.baxandrei.ro/dedicatii-v2/public/css/baxandrei.ro.css?<?php echo versiune_fisiere_no_cache; ?>">
+<link rel="stylesheet" href="https://main.baxandrei.ro/dedicatii-v2/css-personalizat/<?php echo id_radio; ?>.css">
+<script src="https://main.baxandrei.ro/dedicatii-v2/public/js/baxandrei.ro.js?<?php echo versiune_fisiere_no_cache; ?>"></script>
 <?php if(tip_fundal == 2) { ?><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
 <script>jQuery(document).ready(function(){$.backstretch("<?php echo imagine_fundal; ?>");});</script>
 <?php } ?>
@@ -67,7 +67,7 @@ if(isset($_POST['pentru']) && isset($_POST['dela']) && isset($_POST['mesaj'])) {
 <script>
 <?php echo criptare_js('if ($.fn.modal) {
 	window.setInterval(function(){
-		$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web/'.id_radio.'-'.cheie_secreta.'-status_dedicatii/vizitator-vizitator/\', function(status_dedicatii) {
+		$.get(\'https://main.baxandrei.ro/dedicatii-v2/remote-web/'.id_radio.'-'.cheie_secreta.'-status_dedicatii/vizitator-vizitator/\', function(status_dedicatii) {
 			var status_acum = 1;
 			if(status_acum != status_dedicatii) {
 				$(\'#alerta-dedicatii-modal\').modal(\'show\');
@@ -95,7 +95,7 @@ if(isset($_POST['pentru']) && isset($_POST['dela']) && isset($_POST['mesaj'])) {
 <script>
 <?php echo criptare_js('if ($.fn.modal) {
 	window.setInterval(function(){
-		$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web/'.id_radio.'-'.cheie_secreta.'-status_dedicatii/vizitator-vizitator/\', function(status_dedicatii) {
+		$.get(\'https://main.baxandrei.ro/dedicatii-v2/remote-web/'.id_radio.'-'.cheie_secreta.'-status_dedicatii/vizitator-vizitator/\', function(status_dedicatii) {
 			var status_acum = 0;
 			if(status_acum != status_dedicatii) {
 				$(\'#alerta-dedicatii-modal\').modal(\'show\');
@@ -112,7 +112,7 @@ if(isset($_POST['pentru']) && isset($_POST['dela']) && isset($_POST['mesaj'])) {
 <?php if(activare_ajax == 1 && !isset($_POST['pentru']) && !isset($_POST['dela']) && !isset($_POST['mesaj'])) { ?>
 <script>
 <?php echo criptare_js('window.setInterval(function(){
-	$.get(\'https://www.main.baxandrei.ro/dedicatii-v2/remote-web/'.id_radio.'-'.cheie_secreta.'-status_preferinte/vizitator-vizitator/\', function(status_preferinte) {
+	$.get(\'https://main.baxandrei.ro/dedicatii-v2/remote-web/'.id_radio.'-'.cheie_secreta.'-status_preferinte/vizitator-vizitator/\', function(status_preferinte) {
 		var status_preferinte1 = status_preferinte.substr(status_preferinte.length - 1);
 		if(status_preferinte1 == 1) {
 			$("#preferinta").prop("disabled", false);

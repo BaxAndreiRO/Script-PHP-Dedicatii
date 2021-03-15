@@ -39,7 +39,7 @@ var css2 = { display : \'block\' };
                     nume_cont: $("#nume_cont").val(),
                     adresa_site: Base64.encode("'.adresa_url_site.'")
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_parola_pierduta/'.id_radio.'-'.cheie_secreta.'-trimitere_cerere_resetare/",
+                url: "https://main.baxandrei.ro/dedicatii-v2/remote-web_parola_pierduta/'.id_radio.'-'.cheie_secreta.'-trimitere_cerere_resetare/",
                 dataType: "json",
                 success: function (result) {
 					if (result.raspuns == "totul_ok") {

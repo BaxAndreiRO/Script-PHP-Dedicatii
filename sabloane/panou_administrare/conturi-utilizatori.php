@@ -34,7 +34,7 @@ button.btn.dropdown-toggle.btn-default {
                     grad: $("#adauga_utilizator_nou_grad").val(),
                     parola: md5($("#adauga_utilizator_nou_parola").val())
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_utilizatori/'.id_radio.'-'.cheie_secreta.'-adaugare_utilizator/'.$utilizator.'-'.$parola.'/",
+                url: "https://main.baxandrei.ro/dedicatii-v2/remote-web_control_utilizatori/'.id_radio.'-'.cheie_secreta.'-adaugare_utilizator/'.$utilizator.'-'.$parola.'/",
                 dataType: "text",
                 success: function (result) {
 					if (result == "utilizator_adaugat") {

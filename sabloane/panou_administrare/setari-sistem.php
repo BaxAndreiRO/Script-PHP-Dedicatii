@@ -77,7 +77,7 @@ echo criptare_js('$("#actualizare_setari_sistem").submit(function (e) {
 					tag_descriere: $("#tag_descriere").val(),
 					tag_cuvinte_cheie: $("#tag_cuvinte_cheie").val()
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_actualizare_setari_sistem/'.id_radio.'-'.cheie_secreta.'/'.$utilizator.'-'.$parola.'/",
+                url: "https://main.baxandrei.ro/dedicatii-v2/remote-web_actualizare_setari_sistem/'.id_radio.'-'.cheie_secreta.'/'.$utilizator.'-'.$parola.'/",
                 dataType: "text",
                 success: function (result) {
 					if (result == "setari_sistem_actualizate") {

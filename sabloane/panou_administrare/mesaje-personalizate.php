@@ -65,7 +65,7 @@
 					mesaj_acest_ip_a_atins_limita_de_dedicatii: $("#mesaj_acest_ip_a_atins_limita_de_dedicatii").val(),
 					mesaj_eroare_necunoscuta: $("#mesaj_eroare_necunoscuta").val()
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_actualizare_mesaje_personalizate/'.id_radio.'-'.cheie_secreta.'/'.$utilizator.'-'.$parola.'/",
+                url: "https://main.baxandrei.ro/dedicatii-v2/remote-web_actualizare_mesaje_personalizate/'.id_radio.'-'.cheie_secreta.'/'.$utilizator.'-'.$parola.'/",
                 dataType: "text",
                 success: function (result) {
 					if (result == "mesaje_actualizate") {

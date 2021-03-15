@@ -5,13 +5,13 @@
 <title>Setari incorecte detectate!</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="icon" href="https://www.cdn.baxandrei.ro/imagini/favicon.ico">
+<link rel="icon" href="https://cdn.baxandrei.ro/imagini/favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.cdn.baxandrei.ro/bootstrap/css/lumen.css">
-<link rel="stylesheet" href="https://www.main.baxandrei.ro/dedicatii-v2/public/css/baxandrei.ro.css?1.0.2">
+<link rel="stylesheet" href="https://cdn.baxandrei.ro/bootstrap/css/lumen.css">
+<link rel="stylesheet" href="https://main.baxandrei.ro/dedicatii-v2/public/css/baxandrei.ro.css?1.0.2">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://www.cdn.baxandrei.ro/bootstrap/js/bootstrap.js"></script>
-<script src="https://www.main.baxandrei.ro/dedicatii-v2/public/js/baxandrei.ro.js?1.0.2"></script>
+<script src="https://cdn.baxandrei.ro/bootstrap/js/bootstrap.js"></script>
+<script src="https://main.baxandrei.ro/dedicatii-v2/public/js/baxandrei.ro.js?1.0.2"></script>
 </head>
 <body style="background: url(https://bxls.cf/fundaldedicatiiv2) repeat;">
 <div class="container">

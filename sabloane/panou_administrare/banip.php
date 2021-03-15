@@ -59,7 +59,7 @@
                     id: id,
                     ip: ip
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_banip/'.id_radio.'-'.cheie_secreta.'-unban_ip/'.$utilizator.'-'.$parola.'/",
+                url: "https://main.baxandrei.ro/dedicatii-v2/remote-web_control_banip/'.id_radio.'-'.cheie_secreta.'-unban_ip/'.$utilizator.'-'.$parola.'/",
                 dataType: "json",
                 success: function (result) {
 					if (result.ip_debanat) {
@@ -101,7 +101,7 @@
                     ip2: $("#ban_ip2").val(),
                     motiv: $("#motiv_ban").val()
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_control_banip/'.id_radio.'-'.cheie_secreta.'-ban_ip/'.$utilizator.'-'.$parola.'/",
+                url: "https://main.baxandrei.ro/dedicatii-v2/remote-web_control_banip/'.id_radio.'-'.cheie_secreta.'-ban_ip/'.$utilizator.'-'.$parola.'/",
                 dataType: "json",
                 success: function (result) {
 					if (result.ip_banat) {

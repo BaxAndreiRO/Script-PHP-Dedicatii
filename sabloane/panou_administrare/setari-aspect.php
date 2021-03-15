@@ -120,7 +120,7 @@
 					fara_logo_iframe: $("#fara_logo_iframe").val(),
 					ascunde_acp: $("#ascunde_acp").val()
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_actualizare_setari_aspect/'.id_radio.'-'.cheie_secreta.'/'.$utilizator.'-'.$parola.'/",
+                url: "https://main.baxandrei.ro/dedicatii-v2/remote-web_actualizare_setari_aspect/'.id_radio.'-'.cheie_secreta.'/'.$utilizator.'-'.$parola.'/",
                 dataType: "text",
                 success: function (result) {
 					if (result == "setari_aspect_actualizate") {

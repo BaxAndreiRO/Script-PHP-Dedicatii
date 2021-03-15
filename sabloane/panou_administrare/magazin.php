@@ -21,7 +21,7 @@ var id_produs = Base64.decode(id_produs);
                 data: {
                     produs_dorit: id_produs
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_achizitionare_produs/'.id_radio.'-'.cheie_secreta.'/'.$utilizator.'-'.$parola.'/",
+                url: "https://main.baxandrei.ro/dedicatii-v2/remote-web_achizitionare_produs/'.id_radio.'-'.cheie_secreta.'/'.$utilizator.'-'.$parola.'/",
                 dataType: "text",
                 success: function (result) {
 					if (result == "produs_achizitionat") {

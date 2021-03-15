@@ -18,7 +18,7 @@ Daca doriti sa importati un fisier CSS mai mare, va recomandam sa folositi <code
 </div>
 
 <form id="form_actualizare_css_personalizat">
-<textarea id="editor_css_personalizat"><?php echo file_get_contents('https://www.main.baxandrei.ro/dedicatii-v2/css-personalizat/'.id_radio.'.css'); ?></textarea>
+<textarea id="editor_css_personalizat"><?php echo file_get_contents('https://main.baxandrei.ro/dedicatii-v2/css-personalizat/'.id_radio.'.css'); ?></textarea>
 <br>
 <center>
 <button style="margin-top:3px; margin-bottom:3px;" type="button" onclick='toastr["info"]("Anulare modificari nesalvate in curs...");$("#resetare_modificari").addClass("disabled");$("#resetare_modificari").html(" <i class=\"fa fa-cog fa-spin\"></i> In curs de resetare...");window.setTimeout(function(){toastr["success"]("Modificarile nesalvate fost anulate! Se reincarca pagina...");window.setTimeout(function(){location.reload();}, 3010);}, 1000);' id="resetare_modificari" class="btn btn-warning"><i class="fa fa-undo" aria-hidden="true"></i> Resetare modificari curente</button>
@@ -55,7 +55,7 @@ Daca doriti sa importati un fisier CSS mai mare, va recomandam sa folositi <code
                     utilizator: "'.$utilizator.'",
                     hash_p: "'.$parola.'"
                 },
-                url: "https://www.main.baxandrei.ro/dedicatii-v2/remote-web_css_personalizat/'.id_radio.'-'.cheie_secreta.'",
+                url: "https://main.baxandrei.ro/dedicatii-v2/remote-web_css_personalizat/'.id_radio.'-'.cheie_secreta.'",
                 dataType: "text",
                 success: function (result) {
 					if (result == "css_actualizat") {
